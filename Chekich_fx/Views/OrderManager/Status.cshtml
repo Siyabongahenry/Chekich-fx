@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Chekich_fx.Models.Order>
+@{
+    ViewData["Title"] = "Order";
+}
+<div class="container">
+    @if (Model.FirstOrDefault() != null)
+    {
+        <div>
+            <h4>Your orders are listed below</h4>
+            @foreach (Order order in Model)
+            {
+                <div>
+
+                </div>
+            }
+        </div>
+    }
+</div>

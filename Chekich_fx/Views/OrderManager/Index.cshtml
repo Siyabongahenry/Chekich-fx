@@ -1,0 +1,26 @@
+﻿@using Chekich_fx.Enums
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@{
+    ViewData["Title"] = "Checkout Page";
+    string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+<div class="container">
+    <div id="receivalType-container">
+        <form asp-action="Confirm" method="post">
+            <h4 class="p-2">How would you like to receiver your order?</h4>   
+            <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+            <label class="p-2 m-2 border" style="display:block;background-color:#f3f3f3;">
+                <input checked name="_receivalType" type="radio" value="@ReceivalType.Collection" onclick="enableBtn('btn-receivalType')" />
+                <b>Collection</b>
+            </label> 
+            <label class="p-2 m-2 border" style="display:block;background-color:#f3f3f3">
+                <input name="_receivalType" type="radio" value="@ReceivalType.Delivery" onclick="enableBtn('btn-receivalType')" />
+                <b>Delivery</b>
+            </label>
+            <div class="text-center">
+                <button type="submit" class="bg-theme p-2 awe-btn-hover" style="border:0;display:inline-block;width:50%;color:blue;font-weight:bold;border-radius:25px">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+

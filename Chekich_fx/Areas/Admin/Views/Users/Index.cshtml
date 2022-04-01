@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Chekich_fx.Models.ApplicationUser>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@{
+    ViewData["Title"] = "Index";
+     string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+<div class="users-control">
+    <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+    <h5 class="bg-theme-image">Roles Control Panel</h5>
+    <div class="users-container"> 
+         @if(Model != null){
+             <div class="p-2">
+                <div class="awe-boxshadow p-2">
+                    <table id="Users-Emails">
+                        <tr>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th></th>
+                        </tr>
+                         @foreach(var user in Model)
+                        {
+                            <tr id="row-@user.Email">                
+                                <td>
+                                    @user.Email
+                                </td>
+                                <td>
+                                    Admin
+                                </td>
+                                <td><i class="fa fa-trash" onclick="removeUserFromRole('row-@user.Email','@user.Email')"></i></td>
+                            </tr>
+                        }
+                    </table>
+                    <div class="d-none text-center" id="removeResponseTextBox">
+
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="p-2">
+            <div class="awe-boxshadow p-2">
+                <h6 class="bg-theme-image">Add User to Admin Role By Email</h6>
+                <div>
+                    <div class="text-center p-2">
+                        <input type="email" value="" id="Email" placeholder="Type email here.." required />
+                    </div>
+                    <div class="d-none text-center" id="addResponseTextBox">
+
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" onclick="addUserToRole()">Submit</button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+     
+</div>
+<script src="~/js/a_users.js" asp-append-version="true"></script>

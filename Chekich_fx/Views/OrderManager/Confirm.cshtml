@@ -1,0 +1,60 @@
+﻿@model Chekich_fx.ViewModels.CartReceivalViewModel
+@using Chekich_fx.Enums
+@{
+    ViewData["Title"] = "Confirm";
+}
+<div class="container">
+    <div>
+        <h4 class="text-center text-white bg-theme">Please confirm your order</h4>
+        <div class="border p-2" style="box-shadow:2px 2px 2px, -2px -2px 2px;border-radius:10px;">
+           <div style="display:flex;flex-wrap:wrap">
+                @foreach(CartItem item in Model.Cart.CartItems)
+                {
+                    <div class="m-2">
+                          <div class="bg-theme text-white d-inline p-2 float-left">
+                                 <div>Size  : @item.ShoeSizeInt</div>
+                           </div>
+                          <div class="text-center">
+                              <img src="/Images/Store/Product/@item.Product.ImageFileName" width="100">
+                              <div>
+                                  <b>@Html.DisplayFor(modelItem=>item.Product.Name)</b>
+                              </div>
+                          </div>
+                          <div class="p-2 mb-2 border" style= "background-color:#f3f3f3;color:black;border-radius:10px;">
+                            
+                              <div>
+                                 Quantity   : @item.Quantity
+                              </div>
+                              <div>
+                                  Sub-Total : <span style="font-size:16px;font-weight:900;">@Html.DisplayFor(modelItem=>item.SubTotalPrice)</span>
+                              </div>
+                          </div>
+                    </div>
+                }
+                </div>
+                <div class="p-2 border" style="background-color:#f3f3f3;color:black;border-radius:10px">
+                     @if(Model.ReceivalType == ReceivalType.Delivery)
+                    {
+                         <div>
+                             Delivery Price: <span style="font-size:16px;font-weight:900;">@Html.DisplayFor(model=>Model.ReceivalCost)</span>
+                         </div>
+                    }
+                    else
+                    {   
+                         <div> 
+                             Collection Price: <span style="font-size:16px;font-weight:900;">@Html.DisplayFor(modelItem=>Model.ReceivalCost)</span>
+                         </div>
+                    }                    
+                    <div class="text-center">
+                        Total Price: <span style="font-size:18px;font-weight:900;">@Html.DisplayFor(modelItem=>Model.TotalCost)</span>
+                    </div>
+                    <div class="text-center">
+                        <form asp-action="Confirm" method="post">
+                            <input type="hidden" name="_receivalType" value="@Model.ReceivalType"/>
+                            <button class="bg-theme awe-btn-hover p-2" style="border:0;border-radius:25px;color:blue;font-weight:bold;width:50%;">Confirm</button>
+                        </form>
+                    </div>
+                </div>
+        </div>  
+    </div>
+</div>

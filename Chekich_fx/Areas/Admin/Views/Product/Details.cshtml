@@ -1,0 +1,44 @@
+﻿@model Chekich_fx.Models.Shoe
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+    <div class="p-1 mt-2 text-center" style="box-shadow:-2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3">
+         <h6 class="text-white p-2 bg-theme">PRODUCT DETAILS</h6>
+    </div>
+    <div class="p-1 mt-2 text-center" style="box-shadow:-2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3">
+        <div class="text-right">
+            <a class="awe-btn-outline" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-edit"></i>Edit</a>
+        </div>
+        <div>
+            <img src="/Images/Store/Product/@Model.ImageFileName" alt="Alternate Text" height="120" />
+        </div>
+        <div class="text-center awe-fontdesign">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="text-left">
+            @Html.DisplayNameFor(model => model.Price)
+            :&nbsp;<span class="text-theme"><b>@Html.DisplayFor(model => model.Price)</b></span>
+        </div>
+        <div class="text-left">
+            @Html.DisplayNameFor(model=>model.DiscountPrice):&nbsp;
+            <span class="text-theme"><b>@Html.DisplayFor(model => model.DiscountPrice)</b></span>
+        </div>
+        <div class="text-left">
+            @Html.DisplayNameFor(model=>model.Quantity):&nbsp;
+            <span class="text-theme"><b>@Html.DisplayFor(model => model.Quantity)</b></span> 
+        </div>
+    </div>
+    <div class="p-1 mt-2 mb-2" style="box-shadow:-2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3">
+        <div>
+            <h6 class="awe-fontdesign">@Html.DisplayNameFor(model=>model.Description)</h6>
+        </div>
+        <div>
+            <p style="white-space:pre-wrap">@Html.DisplayFor(model => model.Description)</p>
+        </div>
+        <div class="p-1 mt-2 text-right mb-2">
+            <a class="awe-btn-outline" href="@ViewBag.ReturnUrl"><i class="fa fa-walking"></i> Go back</a>
+        </div>
+    </div>
+</div>

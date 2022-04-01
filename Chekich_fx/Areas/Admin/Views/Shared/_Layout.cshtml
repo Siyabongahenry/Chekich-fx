@@ -1,0 +1,94 @@
+﻿@using Chekich_fx.Utility
+@{
+    string url = (Context.Request.Path).ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Demo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/awe.css" />
+    <link href="~/css/fontawesome/css/all.css" rel="stylesheet" />
+   
+    @if(url.Contains("/Admin/AChat"))
+    {
+        <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true"/>
+    }
+    @if(url.Contains("/Admin/Product") && url != "/Admin/Product/Create" )
+    {
+        <link rel="stylesheet" href="~/css/a_store.css" asp-append-version="true"/>
+    }
+    @if(url.Contains("/Admin/Product/Create") || url.Contains("/Admin/Product/Edit"))
+    {
+        <link rel="stylesheet" href="~/css/a_create_p.css" asp-append-version="true"/>
+    }
+    @if(url.Contains("/Admin/ShoeSize/Create"))
+    {
+        <link rel="stylesheet" href="~/css/a_create_shoeSize.css" asp-append-version="true"/>
+    }
+   @if(url.Contains("/Admin/Order"))
+    {
+        <link rel="stylesheet" href="~/css/a_order.css" asp-append-version="true"/>
+    }
+    @if(url.Contains("/Admin/Users"))
+    {
+        <link rel="stylesheet" href="~/css/a_users.css" asp-append-version="true"/>
+    }
+  
+</head>
+<body>
+    <header>
+        <nav class="box-shadow">
+            <ul>
+                <li class="menu-1">
+                    <ul>
+                        <li class="for-mob"><button onclick="openSideNav()"><i class="fa fa-bars"></i></button></li>
+                        <li><a asp-area="" asp-controller="Profile" asp-action="Index"><i class="fa fa-user"></i></a></li>
+                        <li class="for-mob"> <button class="btn-mob" onclick="InputSearchDisplay()"><i class="fa fa-search"></i></button></li>
+                        <li>
+                            <a asp-controller="Order" asp-action="Index">
+                                Order <span class="badge bg-theme" style="color:white">@await Component.InvokeAsync("Order")</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-2">
+                    <ul>
+                        <li><a asp-controller="Product" asp-action="Index">Product</a></li>
+                        <li><a asp-controller="Setting" asp-action="Index">Setting</a></li>
+                        <li><a asp-controller="Setting" asp-action="ColAddressBook">AddressBook</a></li>
+                        <li><a asp-controller="AChat" asp-action="Index"><span>Messages</span><span class="badge bg-theme text-white" id="message-link">@await Component.InvokeAsync("ChatNotification")</span></a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Store </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-body">
+        <main role="main">
+            @RenderBody()
+            <button onclick="topFunction()" id="topBtn"><i class="fa fa-angle-up"></i></button>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" style="font-size:0.75em">
+            &copy; 2021 - Chekich-fx - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @if(url.Contains("/Admin/Product") && !url.Contains("/Create"))
+    {
+       <script src="~/js/a_create_p.js" asp-append-version="true"></script>
+    }
+    @if(url.Contains("/Admin/Product/Create"))
+    {
+       <script src="~/js/a_create_p.js" asp-append-version="true"></script>
+    }
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

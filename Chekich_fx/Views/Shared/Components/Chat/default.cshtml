@@ -1,0 +1,75 @@
+﻿@model Chekich_fx.Models.SenderReceiverInfo
+@using Chekich_fx.Utility
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@{
+    string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+<div class="chat-screen" id="chat-screen-@Model.Id">
+    <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+    <div class="text-center p-2 text-white bg-theme">
+        <button onclick="closeChatScreen('chat-screen-@Model.Id')" class="float-left border-0">x</button>
+        @if (ViewBag.IsAdmin == true)
+        {
+            <b>@Model.Sender.FirstName @Model.Sender.LastName</b>
+            <input type="hidden" id="senderId-@Model.Id" value="@Model.ReceiverId" />
+            <input type="hidden" id="receiverId-@Model.Id" value="@Model.SenderId" />
+        }
+        else
+        {
+            <b>Chat With Us</b>
+            <input type="hidden" id="senderId-@Model.Id" value="@Model.SenderId" />
+            <input type="hidden" id="receiverId-@Model.Id" value="@Model.ReceiverId" />
+        }
+        <div id="typing-alert-@Model.Id" class="w-100 text-center text-theme-2"><i class="fa fa-smile"></i></div>
+    </div>
+    <div class="chat-main-container">
+        <div>
+            <div id="chat-container-@Model.Id">
+                @if (Model.Chats != null)
+                {
+                    @foreach (var chat in Model.Chats)
+                    {
+                        @if (User.IsInRole(URole.Admin) || User.IsInRole(URole.SuperAdmin))
+                        {
+                            @if (chat.SenderId == Model.ReceiverId)
+                            {
+                                <div>
+                                    <div class="sent-chat">@Html.DisplayFor(model => chat.Message)&nbsp;<span class="timespan">@chat.DateTime.ToString("HH:mm")<i class="fa fa-check-double" style="color:#1b6ec2"></i></span></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <div class="received-chat">@Html.DisplayFor(model => chat.Message)&nbsp;<span class="timespan">@chat.DateTime.ToString("HH:mm")</span></div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            @if (chat.SenderId == Model.SenderId)
+                            {
+                                <div>
+                                    <div class="sent-chat">@Html.DisplayFor(model => chat.Message)&nbsp;<span class="timespan">@chat.DateTime.ToString("HH:mm")<i class="fa fa-check-double" style="color:#1b6ec2"></i></span></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <div class="received-chat">@Html.DisplayFor(model => chat.Message)&nbsp;<span class="timespan">@chat.DateTime.ToString("HH:mm")</span></div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+    <div class="chat-input" id="chat-input-@Model.Id">
+        <textarea class="text-left" autofocus id="messageInput-@Model.Id" rows="1" placeholder="type here..." oninput="growTextArea(this,@Model.Id)">
+                    </textarea>
+        <button class="send-Chat-Button" onclick="SendMessage(@Model.Id)"><i class="fa fa-paper-plane"></i></button>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

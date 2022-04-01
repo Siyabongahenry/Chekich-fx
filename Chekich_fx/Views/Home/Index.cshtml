@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="bg-white p-1">
+    <div class="home-container">
+        <div class="home-item">
+            <div class="text-center home-top-container" style="font-family:Verdana;font-weight:900;letter-spacing:0.125em">
+                <div class="logo-image" style="width:100%;overflow:hidden">
+                    <picture>
+                        <source srcset="/Images/logo-lg.png" media="(min-width:500px)" style="width:100%">
+                        <source srcset="/Images/logo-md.png" media="(min-width:276px)" style="width:100%">
+                        <img src="/Images/logo-xm.png" alt="Alternate Text" style="width:100%" />
+                    </picture>
+                </div>
+                <div class="inner p-1" style="font-size:0.75em;letter-spacing:0.0625em;">
+                    <span class="web-slogan-1"><span class="text-theme">Online</span>&nbsp;<span style="color:var(--theme-color-2)">Store</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="home-item2">     
+            <h6 class="p-2 mt-2 text-center text-theme awe-boxshadow" style="border-radius:25px"  ><b>Start Shopping</b></h6>       
+            @await Component.InvokeAsync("Store")  
+        </div>
+    </div>
+    <div class="text-center mt-4" style="clear:both">
+        <a asp-controller="Store" asp-action="Index" class="awe-btn-outline"><i class="fa fa-walking"></i> Go To Store</a>
+    </div>
+</div>
+

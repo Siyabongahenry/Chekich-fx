@@ -1,0 +1,116 @@
+﻿@using Chekich_fx.Utility
+@using Chekich_fx.Enums
+@{
+    string url = (Context.Request.Path).ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Demo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/awe.css" asp-append-version="true"/>
+    <link href="~/css/fontawesome/css/all.css" rel="stylesheet" />
+    @if(url == "/")
+    {
+         <link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
+         <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
+    }
+    else if((url.Contains("/Store")) && !url.Contains("/Details"))
+    {
+         <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
+    }
+    else if(url.Contains("/Store/Details"))
+    {
+         <link rel="stylesheet" href="~/css/p_details.css" asp-append-version="true"/>
+    }
+    else if(url.Contains("/Cart"))
+    {
+         <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true"/>
+    }
+    else if(url.Contains("/Track") )
+    {
+         <link rel="stylesheet" href="~/css/trackitem.css" asp-append-version="true"/>
+    }
+    
+    else if(url.Contains("/Chat"))
+    {
+        <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true"/>
+    }  
+   
+    else if(url.Contains("/Profile") )
+    {
+         <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true"/>
+    }
+   
+   
+</head>
+<body>
+    <header>
+        <nav class="box-shadow">
+            <ul>
+                <li class="menu-1">
+                    <ul>
+                        <li class="for-desktop"><button class="awe-fontdesign"><span class="text-theme-2">Chekich-fx</span><span class="text-theme">.com</span></button></li>
+                        <li class="for-mob"><button onclick="openSideNav()"><i class="fa fa-bars"></i></button></li>
+                        <li><a asp-controller="Profile" asp-action="Index"><i class="fa fa-user"></i></a></li>
+                        <li class="for-mob"><button class="btn-mob" onclick="InputSearchDisplay()"><i class="fa fa-search"></i></button></li>
+                        <li>
+                            <a asp-area="" asp-controller="Cart" asp-action="Index">
+                                <i class="fa fa-shopping-cart"></i> <span class=" badge text-white bg-theme" style="color:white;">@await Component.InvokeAsync("Cart")</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-2">
+                    <ul>
+                        <li class="for-mob"><button class="awe-fontdesign"><span class="text-theme-2">Chekich-</span><span class="text-theme">FX</span></button></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        @if (User.IsInRole(URole.Admin) || User.IsInRole(URole.SuperAdmin))
+                        {
+                            <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+
+                        }
+
+                        <li>
+                            <button onclick="openSubMenu(this,'store-sub-menu','Store')">Store <i class="fa fa-caret-down"></i></button>
+                            <ul class="sub-menu" id="store-sub-menu">
+                                <li> <a asp-area="" asp-controller="Store" asp-action="Index">All</a></li>
+                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Boots">Boots</a></li>
+                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Sneaker">Sneaker</a></li>
+                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Streetwear">St.wear</a></li>
+                                <li> <a asp-area="" asp-controller="Sales" asp-action="Index">Sales</a></li>
+                            </ul>
+                        </li>
+                         <li> <a asp-area="" asp-controller="Track" asp-action="Index">MyOrder</a></li>
+                        <li> <a asp-area="" asp-controller="Chat" asp-action="Index"><span>Messages</span>&nbsp;<span class="badge bg-theme text-white" id="message-link">@await Component.InvokeAsync("ChatNotification")</span></a></li>
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-body">
+        <main role="main">
+            @RenderBody()
+            <button onclick="topFunction()" id="topBtn"><i class="fa fa-angle-up"></i></button>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" style="font-size:0.75em">
+            &copy; 2021 - Chekich-fx.com - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @if(!url.Contains("/Chat") && !url.Contains("/AChat"))
+    {
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/alert.js" asp-append-version="true"></script>
+    }
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

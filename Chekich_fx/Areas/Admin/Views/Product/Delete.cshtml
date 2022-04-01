@@ -1,0 +1,63 @@
+﻿@model Chekich_fx.Models.Shoe
+
+@{
+ViewData["Title"] = "Delete";
+}
+
+<div class="border p-4 overflow-auto container">
+    <h4 class="text-center bg-gold text-danger p-4 font-Arialblack">Delete Product</h4>
+    <div>
+        <div class="text-center">
+            <img src="/Images/Store/Product/@Model.ImageFileName" alt="Alternate Text" height="200" />
+        </div>
+        <dl class="row font-Arialblack">
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.DiscountPrice)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DiscountPrice)
+            </dd>
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+            <dt class="col-sm-2 text-gold">
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-inline-block text-left">
+                <a class="btn bg-gold text-white" asp-action="Index"><i class="fa fa-arrow-left"></i> Go back</a>
+            </div>
+            <div class="w-50 d-inline-block text-right">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>

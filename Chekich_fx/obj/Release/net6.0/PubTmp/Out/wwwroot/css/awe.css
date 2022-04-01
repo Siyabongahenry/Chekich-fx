@@ -1,0 +1,154 @@
+﻿:root {
+    --theme-color: black;
+    --theme-color-2: silver;
+    --awe-shadow: -2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3;
+    --theme-bg-image: linear-gradient(to right,black,black);
+}
+html {
+    font-size: 1em;
+    
+}
+.awe-boxshadow{
+    box-shadow:var(--awe-shadow);
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+/*background color*/
+.bg-theme {
+    background-color:var(--theme-color);
+}
+.bg-theme-2 {
+    background-color: var(--theme-color-2);
+}
+.bg-darkseagreen {
+    background-color: darkseagreen;
+}
+.bg-darkcyan {
+    background-color: darkcyan;
+}
+.bg-blueviolet{
+    background-color:blueviolet;
+}
+.bg-theme-image {
+    background-image:var(--theme-bg-image);
+}
+/*text-color*/
+.text-theme {
+    color:var(--theme-color);
+}
+.text-theme-2 {
+    color: var(--theme-color-2);
+}
+.text-grey{
+    color:grey;
+}
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+.text-blueviolet{
+    color:blueviolet;
+}
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+/*Buttons*/
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+.awe-bg-image{
+    background-image:linear-gradient(to right,black,black);
+}
+.awe-outline-none{
+    outline:none;
+}
+.awe-outline-none:focus{
+    outline:none;
+}
+.awe-btn-outline {
+    background-color: whitesmoke;
+    color: var(--theme-color);
+    border: 2px solid var(--theme-color);
+}
+
+.awe-btn-fill{
+    background-color:var(--theme-color);
+    color:white;
+}
+.awe-btn-outline, .awe-btn-fill {
+    padding: 0.25em;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 900;
+}
+.awe-btn-outline:hover,.awe-btn-fill:hover{
+    opacity: 0.4;
+    text-decoration: none;
+}
+.awe-btn-outline:focus,.awe-btn-fill:focus{
+    border:2px solid var(--theme-color);
+}
+/*Font*/
+.font-Arialblack {
+    font-family: 'Arial Black';
+}
+/***/
+.error, .success {
+    border: 1px solid #f3f3f3;
+    background-color:white;
+    padding: 2%;
+    border-radius:5px;
+}
+.error{
+    color:red;
+   
+}
+.success {
+    color:#28a745;
+}
+/*border*/
+.awe-border{
+    border:1px solid var(--theme-color);
+}
+/*Container*/
+.awe-container{
+    padding:0 2%;
+}
+/*Font*/
+.awe-fontdesign {
+    color: #585151;
+    font-size: 0.875rem;
+    font-weight: 900;
+    text-shadow:none;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size:16px;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 30px;
+    font-family:Arial, sans-serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 30px; /* Vertically center the text there */
+    color: #AE8625;
+    z-index:-1;
+}
+

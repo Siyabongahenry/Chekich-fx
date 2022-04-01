@@ -1,0 +1,15 @@
+﻿@model Chekich_fx.Models.Shoe
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container p-2">
+    <div class="mt-2 p-2 text-center mb-2" style="box-shadow:-2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3;">
+        <div class="p-2" style="background-color:#f3f3f3">
+            <label><b>YOU CAN CHANGE YOUR PRODUCT DETAILS BELOW</b></label>
+        </div>
+    </div>
+    <form asp-action="Edit" enctype="multipart/form-data">
+        @await Component.InvokeAsync("Product", Model)
+    </form>
+</div>

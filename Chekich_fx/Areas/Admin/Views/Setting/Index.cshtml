@@ -1,0 +1,29 @@
+﻿@using Chekich_fx.Utility
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h4 class="awe-fontdesign bg-theme text-white p-2 text-center">Settings</h4>
+    <div class="row">
+        <div class="col-6 mt-2">
+            <a asp-controller="Member" asp-action="Index" class="btn w-100 bg-light awe-btn-outline">Members</a>
+        </div>
+        <div class="col-6 mt-2">
+            <a asp-action="ColAddressBook" class="btn w-100 awe-btn-outline">Payment</a>
+        </div>
+        <div class="col-6 mt-2">
+            <a asp-action="ColAddressBook" class="btn  w-100 awe-btn-outline">Address Book</a>
+        </div>
+       
+        @if (User.IsInRole(URole.SuperAdmin))
+        {
+            <div class="col-6 mt-2">
+                <a asp-controller="Users" asp-action="Index" class="btn w-100 awe-btn-outline">Add Users</a>
+            </div>
+        }
+        <div class="col-6 mt-2">
+            <a asp-area="Admin" asp-controller="slide" asp-action="Index" class="btn w-100 awe-btn-outline">Slide</a>
+        </div>
+    </div>
+</div>
+

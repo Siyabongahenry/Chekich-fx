@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Chekich_fx.Models.Shoe>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h6 class="text-center text-white awe-bg-image p-2 font-Arialblack">See Our Sales Below</h6>
+    @if (Model != null)
+    {
+        @await Component.InvokeAsync("Store", Model) ;
+    }
+    else
+    {
+        <div class="container border">
+            <p>We don't have any sales.</p>
+        </div>
+    }
+</div>

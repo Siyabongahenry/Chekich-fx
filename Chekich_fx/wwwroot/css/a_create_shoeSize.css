@@ -1,0 +1,13 @@
+﻿.sizes-container table{
+    width:100%;
+}
+.sizes-container table th{
+    font-weight:bold;
+}
+.sizes-container table th,
+.sizes-container table td{
+    padding:2px 0 2px 10px;
+}
+.sizes-container table row:nth-child(even){
+    background-color:whitesmoke;
+}

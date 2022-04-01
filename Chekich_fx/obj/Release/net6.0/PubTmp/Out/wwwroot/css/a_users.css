@@ -1,0 +1,41 @@
+﻿.users-control h5,.users-control h6 {
+    font-weight: 900;
+    padding:10px;
+    text-align: center;
+    color: white;
+}
+.users-container table{
+    width:100%;
+}
+.users-container table,
+.users-container table th,
+.users-container table td {
+    border: 1px solid grey;
+}
+.users-container table th{
+    font-weight:900;
+
+}
+.users-container table th,
+.users-container table td {
+    padding:5px;
+}
+.users-container input{
+    width:100%;
+    padding:5px;
+}
+@media only screen and (min-width:900px){
+    .users-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .users-container > div {
+        width: 50%;
+    }
+    .users-container input {
+        width: 70%;
+    }
+}
+    
+}

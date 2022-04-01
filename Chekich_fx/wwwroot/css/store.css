@@ -1,0 +1,150 @@
+﻿.search-form-container {
+    width: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 2px;
+    border-radius: 20px;
+    box-shadow: -10px -10px 5px #f3f3f3,10px 10px 5px #f3f3f3;
+    display: none;
+}
+.search-form-container input, .search-form-container button{
+    border: 1px solid #f3f3f3;
+    font-size:1em;
+    padding:5px 0 5px 0;
+}
+.search-form-container input{
+    width:80%;  
+    float:left;
+    padding-left:20px;
+}
+.search-form-container button{
+    width:20%;
+    float:left;
+    background-color:var(--theme-color);
+    color:white; 
+}
+.search-form-container button:focus{
+    outline:none;
+}
+.search-form-container button:hover{
+    background-color:var(--theme-color);
+}
+.search-form-container input:focus{
+    border:1px solid #f3f3f3;
+    outline:none;
+}
+
+.store-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    width: 100%;
+}
+.store-filters {
+    font-size: 1em;
+}
+
+.store-container > div {
+    width: 100%;
+    padding: 1%;
+}
+.store-container .store-item {
+    width: 100%;
+    padding:2%;
+}
+.store-container .store-item a{
+    display:block;
+    text-decoration:none;
+}
+.store-container .store-item:hover{
+    box-shadow:-1px -1px 1px silver,1px 1px 1px silver;
+    border-radius:25px;
+}
+.store-container .store-item img {
+    width: 90%;
+}
+
+.store-item button:hover, .check-out-link:hover {
+    background-color: silver;
+    outline: 0;
+    color: white;
+}
+
+.store-item .btn-cart {
+    background-color: var(--theme-color);
+    opacity: 0.9;
+    color: white;
+    padding: 4px;
+    border: 0;
+    border-radius: 1.5625rem;
+    margin-bottom: 0.5rem;
+}
+
+.discount-tag {
+    display: inline-block;
+    font-size: 0.8125rem;
+    color: black;
+    float: right;
+    background-color:silver;
+    font-weight:bold;
+    padding:2px;
+    border-radius:2px;
+    line-height:30px;
+    height:30px;
+}
+
+
+@media only screen and (min-width:300px) {
+    .store-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .store-container > div {
+        width: 50%;
+    }
+}
+@media only screen and (min-width:500px) {
+    
+    .store-container > div {
+        width: 33.33%;
+    }
+}
+@media only screen and (min-width:900px) {
+    .store-main-container {
+        position: relative;
+        overflow: auto;
+    }
+    .store-main-container .store-container-1, .store-main-container .store-container-2 {
+        display: inline-block;
+        overflow: auto;
+    }
+    .store-main-container .store-container-1 {
+        padding: 2%;
+        width: 20%;
+    }
+    .store-main-container .store-container-2 {
+        width: 80%;
+        float: right;
+        padding: 1%;
+    }
+    .store-container .store-item img {
+        width: 70%;
+        border-radius: 5px;
+    }
+
+    .search-form-container {
+        position: initial;
+        display: block;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .search-form-container input {
+        width: 90%;
+        border-radius: 25px 0 0 25px;
+    }
+    .search-form-container button {
+        width: 10%;
+        border-radius: 0 25px 25px 0;
+    }
+}

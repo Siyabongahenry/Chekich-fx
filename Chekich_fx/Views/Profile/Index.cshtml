@@ -1,0 +1,68 @@
+﻿@model Chekich_fx.Models.ApplicationUser 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@{
+    ViewData["Title"] = "Index";
+    string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+<div class="profile-container">
+    <div class="inner-container">
+        <h6>Personal Details</h6>
+        <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>      
+        <div>
+            <b>FirstName</b>
+            <div id="FirstNameDisplayBlock">
+                <span id="NameLabel">@Html.DisplayFor(model => model.FirstName)</span>
+                <div id="FirstNameSuccess" class="success d-none"></div>       
+                <button class="border-0" onclick="showEditBlock('FirstName')">Edit</button>
+            </div>
+            <div class="d-none" id="FirstNameEditBlock">
+                <input value="@Model.FirstName" name="FirstName" id="FirstNameInput"/>
+                <div id="FirstNameError"class="error d-none"></div>
+                <button class="border-0" onclick="saveInput('FirstName')">Save</button>
+            </div>
+        </div>
+        <div>
+            <b>LastName</b>
+            <div id="LastNameDisplayBlock">
+                <span id="LastNameLabel">@Html.DisplayFor(model => model.LastName)</span>
+                <div id="LastNameSuccess" class="success d-none"></div>
+                <button class="border-0" onclick="showEditBlock('LastName')">Edit</button>
+            </div>
+            <div class="d-none" id="LastNameEditBlock">
+                <input value="@Model.LastName" name="LastName" id="LastNameInput" />
+                <div id="LastNameError d-none" class="error d-none"></div>
+                <button class="border-0" onclick="saveInput('LastName')">Save</button>
+            </div>
+        </div>
+        <div>
+            <b>Phone Number </b>
+            <div id="PhoneNumberDisplayBlock">
+                <span id="PhoneNumberLabel">@Html.DisplayFor(model => model.PhoneNumber)</span>
+                <div id="PhoneNumberSuccess" class="success d-none"></div>
+                <button class="border-0" onclick="showEditBlock('PhoneNumber')">Edit</button>
+            </div>
+            <div class="d-none" id="PhoneNumberEditBlock">
+                <input value="@Model.PhoneNumber" name="PhoneNumber" id="PhoneNumberInput" />
+                <div id="PhoneNumberError" class="error d-none"></div>
+                <button class="border-0" onclick="saveInput('PhoneNumber')">Save</button>
+            </div>
+        </div>
+        <div>
+            <b>Email </b>       
+            <div id="EmailDisplayBlock">
+                <span id="EmailLabel">@Html.DisplayFor(model => model.Email)</span>
+                <div id="EmailSuccess" class="success d-none"></div>
+                <button class="border-0" onclick="showEditBlock('Email')">Edit</button>
+            </div>
+            <div class="d-none" id="EmailEditBlock">
+                <input value="@Model.Email" name="Email" id="EmailInput" />
+                <div id="EmailError" class="error d-none"></div>
+                <button class="border-0" onclick="saveInput('Email')">Save</button>
+            </div>
+        </div>
+        <div class="addressBook-block">
+            <a asp-action="AddressBook" id="addressBook-link"> <i class="fa fa-address-book"></i> Address Book</a>
+        </div>
+    </div>
+</div>
+<script src="~/js/profile.js" asp-append-version="true"></script>

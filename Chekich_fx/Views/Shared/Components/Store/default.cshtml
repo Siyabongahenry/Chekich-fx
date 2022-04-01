@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Chekich_fx.Models.Shoe>
+@using Microsoft.AspNetCore.Http.Extensions
+@{
+    var url = Context.Request.Path;
+}
+<div class="store-container">
+    @foreach (Shoe shoe in Model)
+    {
+    <div>
+        <div class="store-item">
+            <a class="inner-container" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url">
+                <div class="text-right">
+                    @if (shoe.DiscountPrice > 0)
+                    {
+                        <div class="discount-tag">
+                            @shoe.DiscountPercentage
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="discount-tag" style="visibility:hidden">
+                        </div>
+                    }
+                </div>
+                <div class="p-2 text-center" style="clear:both;">
+                    <img src="/Images/Store/Product/@shoe.ImageFileName" alt="image not found" />
+                </div>
+
+                <div class="w-100 bg-transparent text-center pl-1 pr-1" style="font-size:0.675rem;font-family:Verdana;height:1rem;line-height:1rem;">
+                    @if (shoe.Quantity == 0)
+                    {
+                        <b class="text-danger">out of stock</b>
+                    }
+                </div>
+                <div class="text-center overflow-hidden" style="height:3rem;line-height:1rem; text-overflow:ellipsis">
+                    <b style="white-space:pre-wrap;overflow:hidden;color:black;">@Html.DisplayFor(modelItem => shoe.Name)</b>
+                </div>
+                <div class="text-center m-2" style="height:2rem;line-height:1rem;">
+                    @if (shoe.DiscountPrice > 0)
+                    {
+                        <b class="text-theme" style="text-decoration-line:line-through;font-size:0.625rem;font-weight:900;text-shadow:none">@Html.DisplayFor(modelitem => shoe.Price)</b>
+                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => shoe.FinalPrice)</b>
+                    }
+                    else
+                    {
+                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => shoe.Price)</b>
+                    }
+                </div>
+            </a>
+        </div>
+    </div>
+    }
+</div>
+    

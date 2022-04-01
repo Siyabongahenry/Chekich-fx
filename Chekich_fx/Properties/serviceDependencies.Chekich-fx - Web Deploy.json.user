@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2022-02-26T07:19:41.1671883Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2022-02-26T07:17:48.5668908Z"
+    },
+    "signalr1": {
+      "restored": true,
+      "restoreTime": "2022-03-31T18:36:23.7437883Z"
+    }
+  },
+  "parameters": {
+    "signalr1.resourceGroupName": {
+      "Name": "signalr1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "MyWeb"
+    },
+    "secrets1.resourceGroupName": {
+      "Name": "secrets1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "MyWeb"
+    },
+    "mssql2.resourceGroupName": {
+      "Name": "mssql2.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "MyWeb"
+    },
+    "mssql2.subscriptionId": {
+      "Name": "mssql2.subscriptionId",
+      "Type": "subscription",
+      "Value": "56d0f5a9-0d7d-4863-8b21-3111ac27f66d"
+    },
+    "secrets1.subscriptionId": {
+      "Name": "secrets1.subscriptionId",
+      "Type": "subscription",
+      "Value": "56d0f5a9-0d7d-4863-8b21-3111ac27f66d"
+    },
+    "signalr1.subscriptionId": {
+      "Name": "signalr1.subscriptionId",
+      "Type": "subscription",
+      "Value": "56d0f5a9-0d7d-4863-8b21-3111ac27f66d"
+    }
+  }
+}

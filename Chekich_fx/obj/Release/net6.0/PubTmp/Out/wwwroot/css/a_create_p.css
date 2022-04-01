@@ -1,0 +1,14 @@
+﻿.a-createp-container textarea {
+    width: 100%;
+}
+
+.a-createp-container > div {
+    box-shadow: var(--awe-shadow);
+    clear: both;
+    overflow: auto;
+    padding: 2%;
+    margin-top: 2%;
+}
+.a-createp-container img {
+    height: 80px;
+}

@@ -1,0 +1,15 @@
+﻿@model Chekich_fx.Models.SenderReceiverInfo
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="a-chat-col1 p-2 text-center">
+    <h6>You Can Chat With US Here</h6>
+    <button class="btn btn-primary" onclick="openUserChatScreen('chat-screen-@Model.Id')"><i class="fa fa-comment"></i>&nbsp;Chat Screen</button>
+    <div class="m-2 text-left border p-2 bg-info">
+        <b>New Chat:</b> <span id="small-chat-@Model.Id"></span>
+        <b class="float-right badge badge-info notification-badge" id="not-count-@Model.Id">0</b>
+    </div>
+</div>
+<div class="a-chat-col2 p-2">
+    @await Component.InvokeAsync("Chat", Model)
+</div>

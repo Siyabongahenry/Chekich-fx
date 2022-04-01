@@ -1,0 +1,81 @@
+﻿@using Chekich_fx.Models
+@model List<SenderReceiverInfo>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="a-chat-container">
+
+    <h6 class="p-1 text-center awe-fontdesign" style="clear:both">CHAT WITH YOUR CLIENTS</h6>
+
+    @if (Model != null)
+    {
+        if (Model.Count > 0)
+        {
+
+            <div class="p-2 a-chat-col1">
+
+                @foreach (var SRI in Model)
+                {
+
+                    <div onclick="openCloseChat(this,@SRI.Id)" class="w-100 p-2 m-2  a-chat" id="a-chat-@SRI.Id">
+                        <div class="overflow-auto">
+                            <b><i class="fa fa-user float-left text-primary" id="btnIcon-@SRI.Id"></i>&nbsp;@SRI.Sender.FirstName @SRI.Sender.LastName</b>
+                            @if (SRI.Chats.Count > 0)
+                            {
+                                @if (Math.Abs(DateTime.Now.Day - (SRI.Chats.LastOrDefault().DateTime.Day)) == 1)
+                                {
+                                    <span class="float-right" style="font-size:0.825rem">yesterday</span>
+                                }
+                                else if (Math.Abs(DateTime.Now.Day - (SRI.Chats.LastOrDefault().DateTime.Day)) > 1)
+                                {
+                                    <span class="float-right" style="font-size:0.825rem">@SRI.Chats.LastOrDefault().DateTime.ToString(" MM/dd/yyyy")</span>
+                                }
+                                else
+                                {
+                                    <span class="float-right" style="font-size:0.825rem">@SRI.Chats.LastOrDefault().DateTime.ToString("HH:mm")</span>
+                                }
+                            }
+
+                        </div>
+                        <div style="font-size:0.825rem;overflow:auto">
+                            @if (SRI.Chats.Count > 0)
+                            {
+                                <span class="d-inline-block" style="text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;width:90%" id="small-chat-@SRI.Id">@SRI.Chats.LastOrDefault().Message</span>
+                            }
+                            else
+                            {
+                                <span class="d-inline-block" style="text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;width:90%" id="small-chat-@SRI.Id">click to chat with client</span>
+                            }
+                            <b class="float-right badge badge-info notification-badge" id="not-count-@SRI.Id">0</b>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+            <div class="a-chat-col2 p-2" style="overflow-y:hidden">
+                @foreach (var SRI in Model)
+                {
+                    if (SRI.Chats != null)
+                    {
+                        <div id="a-screen-@SRI.Id" class="a-screen overflow-auto w-100 m-2 d-none">
+                            @await Component.InvokeAsync("Chat", SRI)
+                        </div>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+            <div class="bg-warning text-center">
+                No customer has initiated a chat with you yet, 
+            </div>
+        }
+    }
+    else
+    {
+        <div>
+            You have no messages
+        </div>
+    }
+</div>

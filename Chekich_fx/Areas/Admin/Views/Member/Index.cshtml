@@ -1,0 +1,40 @@
+﻿@using Chekich_fx.Utility
+@model Chekich_fx.Areas.Admin.Models.ApplicationUserRole
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h4 class="bg-light text-dark text-center p-2">Adding Users</h4>
+    <div style="border-bottom:1px solid #808080">
+
+        @if (Model.User != null)
+        {
+            <div class="container">
+                <div>
+                    <label>First Name: @Model.User.FirstName</label>
+                </div>
+                <div>
+                    <label>Last Name: @Model.User.LastName</label>
+                </div>
+                @if (Model.User.PhoneNumber != null)
+                {
+                    <div>
+                        <label>Contact Name: @Model.User.PhoneNumber</label>
+                    </div>
+                }
+                <form asp-controller="Member" asp-action="Index" method="Get">
+                    <select asp-for="@Model.Role">
+                        <option value="@URole.Admin">Access Everything</option>
+                    </select>
+                    <button class="btn-primary" type="submit">Add</button>
+                </form>
+            </div>
+        }
+    </div>
+    <form asp-controller="Member" asp-action="Index" method="Get">
+        <div class="text-center" id="inputSearch">
+            <input class="border-0 bg-light" style="outline:none;width:80%" type="text" name="email" placeholder=" Type email.." />
+            <button type="submit" class="bg-gold text-white border-0" style="outline:none;padding:2px;width:10%" id="btnsearchsubmit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+</div>

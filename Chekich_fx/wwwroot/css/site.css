@@ -1,0 +1,214 @@
+﻿
+*{
+    box-sizing:border-box;
+}
+.main-body {
+    margin-top: 40px;
+}
+.for-desktop{
+    display:none;
+}
+nav {
+    width: 100vw;
+    position:fixed;
+    top:0;
+    line-height:40px;
+    height:40px;
+    background-color:var(--theme-color);
+    z-index:1;
+}
+nav form{
+    display:inline-block;
+    width:100%;
+}
+nav ul,nav form{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    background-color:white;
+}
+nav ul{
+    background-color:white;
+}
+nav ul,nav ul li,nav a,nav button{
+    line-height:inherit;
+}
+nav button,nav a{
+    text-decoration:none;
+    outline:none;
+    border:none;
+    color:inherit;
+    display:block;
+    width:100%;
+    background-color:inherit;
+    padding:0;
+    border-left:1px solid white;
+    border-right:1px solid white;
+    text-align:center;
+}
+nav button:focus,nav a:focus{
+    outline:none;
+    text-decoration:none;
+}
+nav .menu-1{
+    overflow:hidden;
+}
+nav .menu-1 > ul > li{
+    float:left;
+    width:22%;
+}
+nav .menu-1 > ul > li:last-child{
+    width:34%;
+}
+nav .menu-1 button,nav .menu-1 a{
+    text-align:center;
+}
+
+nav .menu-2{
+    position:absolute;
+    width:0px;
+    top:40px;
+    left:0;
+    background-color:white;
+    height:calc(100vh - 40px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    transition:width 0.3s;
+}
+nav .side-nav-w{
+    width:80%;
+}
+nav .menu-2 .sub-menu{
+    overflow:hidden;
+    height:0;
+    transition:height 0.2s;
+}
+nav .menu-2 a,nav .menu-2 button{
+    text-align:left;
+    overflow:hidden;
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:0.875rem;
+    background-color:inherit;
+   
+}
+nav .menu-2 ul,nav .menu-2 .sub-menu{
+    padding-left:10px;
+}
+nav a:hover,nav button:hover{
+    background-color:var(--theme-color);
+    color:blue;
+    text-decoration:none;
+    text-align:center;
+}
+#topBtn{
+    position:fixed;
+    bottom:10rem;
+    right:0.5rem;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    font-size:1.125rem;
+    display:none;
+    background-color:var(--theme-color);
+    border:0;
+    color:var(--theme-color-2);
+    z-index:5;
+}
+
+.web-slogan-1 {
+    animation: web-slogan-mov 10s linear 5;
+    display: inline-block;
+    overflow: hidden;
+}
+@keyframes web-slogan-mov {
+    0% {
+        width:0%;
+    }
+    100% {
+        width:100%;
+    }
+}
+
+.spinner {
+    display: none;
+    background-color: white;
+    margin-left: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.125rem solid whitesmoke;
+    border-top: 0.3125rem solid var(--theme-color);
+    border-radius: 50%;
+}
+.spinner-animation{
+    animation:spin 0.5s linear infinite;
+}
+@keyframes spin{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+@media only screen and (min-width:500px) {
+    nav .side-nav-w {
+        width:50%;
+    }
+    
+}
+@media only screen and (min-width:900px) {
+    .for-mob{
+        display:none;
+    }
+    .for-desktop{
+        display:initial;
+    }
+    .main-body {
+        margin-top: 40px;
+    }
+    nav{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+    }
+    nav .side-nav-w {
+        width:initial;
+    }
+    nav .menu-2{
+        position:initial;
+        width:initial;
+        height:initial;
+        overflow-x:initial;
+        overflow-y:initial;
+    }
+    nav .menu-1,nav .menu-2{
+        float:left;
+    }
+    nav .menu-1 > ul > li, nav .menu-2 > ul > li {
+        float: left;
+        width: initial;
+    }
+    nav .menu-1 > ul > li:last-child {
+        width: initial;
+    }
+    nav .menu-2 > ul > li{
+       position:relative;
+    }
+   
+    nav .menu-2 .sub-menu {
+        position:absolute;
+        width:100%;
+        left: 0;
+        top: 40px;
+        overflow:auto;
+    }
+    nav .menu-2 .sub-menu{
+        padding-left:0;
+    }
+    nav a,nav button{
+        padding:0 20px 0 20px;
+    }
+   
+}

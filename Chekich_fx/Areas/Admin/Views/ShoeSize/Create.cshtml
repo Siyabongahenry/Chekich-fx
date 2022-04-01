@@ -1,0 +1,67 @@
+﻿@model Chekich_fx.Models.Shoe
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@{
+    ViewData["Title"] = "Create";
+    string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+<div class="container">
+    <h6 class="bg-theme p-2 text-center text-white"><b>ADD SIZES</b></h6>
+    <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+     <input type="hidden" name="ShoeId" value="@Model.Id"/>
+    <div class="awe-boxshadow mt-2 p-2" style="position:relative">
+        <div class="text-center">
+             <img src="/Images/Store/Product/@Model.ImageFileName" alt="UNABLE TO SHOW IMAGE" height="110" />
+        </div>
+        <div class="text-center awe-fontdesign">
+            @Html.DisplayFor(model=>model.Name)
+        </div>
+         <div class="sizes-container">
+             <table id="sizes-table">
+                 <thead>
+                 <tr>
+                     <th>Size</th>
+                     <th>Quantity</th>
+                     <th></th>
+                 </tr>
+                </thead>
+                <tbody>
+                    @if(Model.Sizes != null)
+                    {
+                        @foreach(var shoeSize in Model.Sizes.OrderBy(s=>s.Size))
+                        {
+                            <tr id="@shoeSize.Size">
+                                <td class="size">@shoeSize.Size</td>
+                                <td id="@shoeSize.Size-quantity" class="quantity" onclick="allowUpdate(@shoeSize.Size,@shoeSize.Quantity)">@shoeSize.Quantity</td>
+                                <td onclick="removeSize(@Model.Id,@shoeSize.Size)"><i class="fa fa-trash" ></i></td>
+                            </tr>
+                        }
+                    }              
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td id="TotalItems">@Model.Quantity</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                         <td>
+                             <input type="number" name="Size" placeholder="0" style="width:50px;border:1px solid var(--theme-color)"  max="11" min="1"/>
+                         </td>
+                         <td>
+                            <input type="number" name="Quantity" placeholder="0" style="width:50px;border:1px solid var(--theme-color)"  min="0"/>
+                         </td>
+                         <td>
+                            <div class="spinner"></div>
+                            <button class="btn btn-primary" id="SubmitBtn" onclick="add(this)">Add</button>
+                         </td>
+                     </tr>
+                </tfoot>
+             </table>
+             <div id="responseBox" class="d-none">
+                 
+             </div>
+        </div>
+      
+    </div>
+</div>
+<script src="~/js/a_create_shoesize.js" asp-append-version="true"></script>

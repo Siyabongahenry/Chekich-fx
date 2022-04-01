@@ -1,0 +1,72 @@
+﻿@model Chekich_fx.Models.Shoe
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="item-details">
+    <h4 class="text-center p-1">Showing Details</h4>
+    <div class="image-container">
+        <div style="box-shadow:-4px -4px 4px #f3f3f3,4px 4px 4px #f3f3f3;padding:2%;overflow:hidden;">
+            @if (Model.DiscountPrice > 0)
+            {
+                <div class="discount-tag">
+                    @Model.DiscountPercentage
+                </div>
+            }
+            <form asp-action="AddProductToCart" method="post">
+                <div class="text-right w-100">          
+                    <input type="hidden" asp-for="Id" />      
+                    <button type="submit" class="bg-theme text-primary p-2 border-0 awe-btn-hover" style="font-weight:bold"><i class="fa fa-shopping-cart"></i> Add To Cart</button>   
+                    <div class="spinner"></div>
+                </div>
+                <div class="text-left" style="height:16px;line-height:16px;">
+                    <span class="text-danger" style="font-size:0.6875rem;font-family:Verdana" id="remItem"></span>
+                </div>
+                <div class="p-2 text-center">
+                    <img src="/Images/Store/Product/@Model.ImageFileName" alt="Alternate Text" style="border-radius:5px"/>
+                        @if(Model.Sizes != null)
+                    {
+                        <div class="text-center" >
+                            <div class="d-inline-block">
+                                <b class="w-100 d-block text-theme">Sizes</b>
+                            </div>
+                            @foreach(ShoeSize shoeSize in Model.Sizes.OrderBy(s=>s.Size)){
+                                <div class="d-inline-block border p-1 mt-1">
+                                    <input type="radio" name="ShoeSize" value="@shoeSize.Size" checked data-size-quantity="@shoeSize.Quantity" onclick="showSizesRem()"/>
+                                    <b class="text-theme">@shoeSize.Size</b>
+                                </div>
+                            }
+                        </div>
+                    }     
+                </div>
+                </form>
+            
+            <div class="p-2">
+                <div class="text-center">
+                    <b style="font-size:1rem">@Html.DisplayFor(model => model.Name)</b>
+                </div>
+                <div class="text-right text-theme">
+                    @if (Model.DiscountPrice > 0)
+                    {
+                        <b class="text-theme" style="text-decoration-line:line-through;font-size:0.625rem;font-weight:900;text-shadow:none">@Html.DisplayFor(modelitem => Model.Price)</b>
+                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => Model.FinalPrice)</b>
+                    }
+                    else
+                    {
+                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => Model.Price)</b>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-description">
+        <div class="p-2" style="box-shadow: -4px -4px 4px #f3f3f3,4px 4px 4px #f3f3f3;">
+            <b class="text-left"><b>Discription</b></b>  
+            <p style="white-space:pre-wrap">@Html.DisplayFor(model => model.Description)</p>
+            <hr />
+            <div>
+                <a class="awe-btn-outline d-inline-block" href="@ViewBag.ReturnUrl">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+ <script src="~/js/p_details.js" asp-append-version="true"></script>

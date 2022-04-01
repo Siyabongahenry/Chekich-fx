@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Chekich_fx.Models.Address>
+@{
+    ViewData["Title"] = "Collection";
+}
+<div class="container">
+
+    @if (Model.FirstOrDefault() != null)
+    {
+        <div>
+            Where would you like to collect your order?
+            <form asp-action="Collection" method="post">
+                @foreach (Address address in Model)
+                {
+                    <address class="p-2" style="background-color:#f3f3f3">
+                        <label style="white-space:pre-wrap;display:block">
+                            <input type="radio" value="@address.Id"/>
+                            @address.Location
+                        </label>
+                        <b>@address.TownOrCity</b>
+                    </address>
+                }
+            </form>
+        </div>
+    }
+    else
+    {
+        <h4>We don't have any collection addresses yet, we only do deliveries. Please use the button below for deliveries.</h4>
+        <div>
+            <a class="btn btn-primary" asp-action="Delivery">Deliver My Order</a>
+        </div>
+    }
+</div>
