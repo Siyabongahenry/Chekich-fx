@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Chekich_fx.Models.Address>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1 class="text-center p-1 bg-theme text-primary">ADDRESS LIST</h1>
+    <div class="p-1" style="background-color:lightblue;">
+        <i class="fa fa-info-circle"></i> You can't find your address or haven't created one, then use this putton <i class="fa fa-arrow-right"></i>
+        &nbsp;<a class="btn btn-primary" asp-controller="AddressManager" asp-action="Create" asp-route-returnUrl="@Context.Request.Path">Add New Address</a>
+    </div> 
+    @if (Model.FirstOrDefault() != null)
+    {
+        <div>
+            @foreach (var address in Model)
+            {
+                <form asp-action="UpdateAddressStatus" method="post">
+                    <div class="border p-2 mt-2 mb-2 awe-boxshadow">
+                        <div class="text-left overflow-auto p-1" style="border:1px solid #f3f3f3">
+                            <input type="hidden" name="addressId" value="@address.Id" />
+                            @if (address.Available == true)
+                            {
+                                <input type="checkbox" checked name="available" value="true" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="available" value="true" />
+                            }
+                            <span style="color:silver;font-size:0.8rem">If you do not use the address anymore, untick the checkbox and update.</span>
+                        </div>
+                        <div class="p-2">
+                            <p style="white-space:pre-wrap">@Html.DisplayFor(model => address.HouseNumber)&nbsp;@Html.DisplayFor(model => address.StreetName)</p>
+                            <div>
+                                <label class="text-grey" style="font-weight:900;font-size:0.8rem">@Html.DisplayFor(model => address.TownOrCity)</label>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Update Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+    }
+    <div class="m-2 p-2">
+        <a class="awe-btn-outline" asp-action="Index">Go Back</a>
+    </div>
+</div>

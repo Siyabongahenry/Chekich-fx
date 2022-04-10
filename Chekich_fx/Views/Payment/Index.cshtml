@@ -1,0 +1,22 @@
+﻿@using Chekich_fx.Enums
+@{
+    ViewData["Title"] = "Payment";
+}
+<div class="container">
+    <h1>Please Choose Your Preferred Method Of Payment</h1>
+    <div>
+        <form asp-action="Create">
+            <div class="p-2 mt-2 mb-2 awe-boxshadow">
+                <input type="radio" name="_paymentType" value="@PaymentType.Online" id="@PaymentType.Online"/>
+                <label for="@PaymentType.Online">Online</label>
+            </div>
+            <div class="p-2 mt-2 mb-2 awe-boxshadow">
+                <input type="radio" name="_paymentType" value="@PaymentType.Cash" id="@PaymentType.Cash"/>
+                <label for="@PaymentType.Cash">Cash</label>
+            </div>
+            <div class="text-center">
+                <button type="submit">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>

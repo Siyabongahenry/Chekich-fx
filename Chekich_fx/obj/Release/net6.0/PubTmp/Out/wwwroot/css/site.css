@@ -97,7 +97,7 @@ nav .menu-2 ul,nav .menu-2 .sub-menu{
 }
 nav a:hover,nav button:hover{
     background-color:var(--theme-color);
-    color:white;
+    color:blue;
     text-decoration:none;
     text-align:center;
 }

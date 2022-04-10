@@ -49,7 +49,7 @@
                         Total Price: <span style="font-size:18px;font-weight:900;">@Html.DisplayFor(modelItem=>Model.TotalCost)</span>
                     </div>
                     <div class="text-center">
-                        <form asp-action="Confirm" method="post">
+                        <form asp-action="Submit" method="post">
                             <input type="hidden" name="_receivalType" value="@Model.ReceivalType"/>
                             <button class="bg-theme awe-btn-hover p-2" style="border:0;border-radius:25px;color:blue;font-weight:bold;width:50%;">Confirm</button>
                         </form>

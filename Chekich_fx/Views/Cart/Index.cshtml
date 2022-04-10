@@ -5,87 +5,93 @@
     string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <div class="shopping-cart-container">
-    <h1 class="text-center p-2 text-theme border"><i class="fa fa-shopping-cart text-primary"></i> Shopping Cart</h1>
+    <h1 class="text-center p-2 bg-theme text-white"><i class="fa fa-shopping-cart text-primary"></i> Shopping Cart</h1>
     @if (Model.Items > 0)
     {
-        <div class="cart-items-container1">
+        <div class="overflow-auto">
+            <div class="cart-items-container1">
                
-            @foreach (CartItem cartItem in Model.CartItems)
-            {
-                <div class="p-2">
-
-                    <div class="cart-item" style="position:relative;">
-                        <div style="float:right;">
-                            <a asp-action="DeleteProduct" asp-route-Id="@cartItem.Id"><i class="fa fa-trash text-theme awe-textshadow"></i></a>
-                        </div>
-                        <div class="size-tag"> @cartItem.ShoeSizeInt</div>
-                        <div class="text-center" >
-                            <img src="/Images/Store/Product/@cartItem.Product.ImageFileName" alt="Image not found" style="border-radius:5px"/>
-                        </div>
+                @foreach (CartItem cartItem in Model.CartItems)
+                {
+                    <div class="p-2">
+                        <div class="cart-item" style="position:relative;">
+                            <div style="float:right;">
+                                <a asp-action="DeleteProduct" asp-route-Id="@cartItem.Id"><i class="fa fa-trash text-theme awe-textshadow"></i></a>
+                            </div>
+                            <div class="size-tag"> @cartItem.ShoeSizeInt</div>
+                            <div class="text-center" >
+                                <img src="/Images/Store/Product/@cartItem.Product.ImageFileName" alt="Image not found" style="border-radius:5px"/>
+                            </div>
                         
-                        <div class="text-center" style="height:4rem;line-height:1rem;overflow:hidden">
-                            <a style="color:black;font-weight:bold" asp-controller="Store" asp-action="Details" asp-route-Id="@cartItem.ProductId" asp-route-returnUrl="@Context.Request.Path">
-                               <b style="font-weight:900"> @Html.DisplayFor(modelItem => cartItem.Product.Name)</b>
-                            </a>
-                        </div>
-                        <div class="border p-2">
-                            <div>Price:
-                                @if (cartItem.Product.DiscountPrice > 0)
-                                {
-                                    <span class="text-theme" style="text-decoration-line:line-through;font-size:11px;font-weight:900;text-shadow:none">@Html.DisplayFor(modelitem => cartItem.Product.Price)</span>
-                                    <span class="text-theme" style="font-size:14px;font-weight:900;">@Html.DisplayFor(modelitem => cartItem.Product.FinalPrice)</span>
-                                }
-                                else
-                                {
-                                    <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => cartItem.Product.Price)</b>
-                                }
-                             </div>
-                            <div class="@cartItem.Id">
-                                <form asp-action="UpdateQuantity">
-                                    <label>Quantity:</label>
-                                    <input class="bg-white text-black awe-outline-none" style="border-color:silver" type="number" name="Quantity" value="@cartItem.Quantity" onchange="QuantitySave(@cartItem.Product.Id)" min="1" max="100" />
-                                    <input type="hidden" name="Id" value="@cartItem.Id" />
-                                    <div id="@cartItem.Product.Id" style="display:none">
-                                        <button type="submit" class="text-white bg-theme" style="border-radius:10px;border:1px solid violet" onclick="Start_Spinner( @cartItem.Id)">Save</button>
-                                    </div>
-                                </form>
+                            <div class="text-center" style="height:4rem;line-height:1rem;overflow:hidden">
+                                <a style="color:black;font-weight:bold" asp-controller="Store" asp-action="Details" asp-route-Id="@cartItem.ProductId" asp-route-returnUrl="@Context.Request.Path">
+                                    <b style="font-weight:900"> @Html.DisplayFor(modelItem => cartItem.Product.Name)</b>
+                                </a>
                             </div>
-                            <div class="text-right">
-                                Total:<span style="font-weight:900;font-size:14px;color:black">@Html.DisplayFor(modelItem => cartItem.SubTotalPrice)</span>
-                            </div>
-                            <div class="spinner @cartItem.Id">
+                            <div class="border p-2">
+                                <div>Price:
+                                    @if (cartItem.Product.DiscountPrice > 0)
+                                    {
+                                        <span class="text-theme" style="text-decoration-line:line-through;font-size:11px;font-weight:900;text-shadow:none">@Html.DisplayFor(modelitem => cartItem.Product.Price)</span>
+                                        <span class="text-theme" style="font-size:14px;font-weight:900;">@Html.DisplayFor(modelitem => cartItem.Product.FinalPrice)</span>
+                                    }
+                                    else
+                                    {
+                                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => cartItem.Product.Price)</b>
+                                    }
+                                </div>
+                                <div class="@cartItem.Id">
+                                    <form asp-action="UpdateQuantity">
+                                        <label>Quantity:</label>
+                                        <input class="bg-white text-black awe-outline-none" style="border-color:silver" type="number" name="Quantity" value="@cartItem.Quantity" onchange="QuantitySave(@cartItem.Product.Id)" min="1" max="100" />
+                                        <input type="hidden" name="Id" value="@cartItem.Id" />
+                                        <div id="@cartItem.Product.Id" style="display:none">
+                                            <button type="submit" class="text-white bg-theme" style="border-radius:10px;border:1px solid violet" onclick="Start_Spinner( @cartItem.Id)">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="text-right">
+                                    Total:<span style="font-weight:900;font-size:14px;color:black">@Html.DisplayFor(modelItem => cartItem.SubTotalPrice)</span>
+                                </div>
+                                <div class="spinner @cartItem.Id">
+                                </div>
                             </div>
                         </div>
                     </div>
+            
+                }
             </div>
-            }
-        </div>
-        <div class="cart-items-container2 bg-white" style="z-index:1000">
-            <div class="awe-boxshadow">
-                <div>
-                    <b>Summary</b>
-                    <b class="text-theme" style="font-size:11px;font-family:Verdana">(total items:&nbsp;@Html.DisplayFor(modelItem => Model.Items))</b>
-                    <hr/>
+            <div class="cart-items-container2 bg-white" style="z-index:1000">
+                <div class="awe-boxshadow">
                     <div>
-                        <b>Total Price:&nbsp;<span style="font-size:16px;font-weight:900;color:black;">@Html.DisplayFor(model => model.TotalPrice)</span></b>
+                        <b>Summary</b>
+                        <b class="text-theme" style="font-size:11px;font-family:Verdana">(total items:&nbsp;@Html.DisplayFor(modelItem => Model.Items))</b>
+                        <hr/>
+                        <div>
+                            <b>Total Price:&nbsp;<span style="font-size:16px;font-weight:900;color:black;">@Html.DisplayFor(model => model.TotalPrice)</span></b>
+                        </div>
+                    </div>
+                    <div class="spinner checkout-spin">
+                    </div>
+                    <div class="text-center p-2">
+                        <a class="btn-checkout" asp-controller="OrderManager" asp-action="Index" onclick="Start_Spinner('checkout-spin')">Proceed To checkout</a>
                     </div>
                 </div>
-                <div class="spinner checkout-spin">
-                </div>
-                <div class="text-center p-2">
-                    <a class="btn-checkout" asp-controller="OrderManager" asp-action="Index" onclick="Start_Spinner('checkout-spin')">Proceed To checkout</a>
-                </div>
             </div>
+        </div>
+        <div class="info-box">
+            <i class="fa fa-info-circle"></i> Mmm you have an item in your cart, to place an order please press the procceed to checkout button or  &nbsp;
+            <a class="btn btn-primary" asp-controller="Store" asp-action="Index">Continue shopping</a>
         </div>
     }
     else
     {
-        <div style="clear:both">
-            <p>You have nothing in your cart.</p>
-            <a asp-controller="Store" asp-action="Index" class="awe-btn-fill" style="border:1px solid #f3f3f3;color:silver;"><i class="fa fa-walking"></i> Continue shopping</a>
+        <div class="info-box">
+            <i class="fa fa-info-circle"></i> You have nothing in your cart &nbsp;
+            <a class="btn btn-primary" asp-controller="Store" asp-action="Index">Continue shopping</a>
         </div>
     }
-
+   
 </div>
 <script src="~/js/cart.js" asp-append-version="true"></script>
 

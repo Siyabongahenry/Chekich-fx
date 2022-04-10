@@ -4,13 +4,13 @@
       "type": "secrets",
       "connectionId": "VaultUri"
     },
-    "mssql2": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:MyDbConnection"
-    },
     "signalr1": {
       "type": "signalr",
       "connectionId": "Azure:SignalR:ConnectionString"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:MyDbConnection"
     }
   }
 }

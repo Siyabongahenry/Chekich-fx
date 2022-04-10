@@ -5,9 +5,9 @@
     string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <div class="container">
+    <h1 class="p-2">How would you like to receiver your order?</h1>   
     <div id="receivalType-container">
         <form asp-action="Confirm" method="post">
-            <h4 class="p-2">How would you like to receiver your order?</h4>   
             <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
             <label class="p-2 m-2 border" style="display:block;background-color:#f3f3f3;">
                 <input checked name="_receivalType" type="radio" value="@ReceivalType.Collection" onclick="enableBtn('btn-receivalType')" />

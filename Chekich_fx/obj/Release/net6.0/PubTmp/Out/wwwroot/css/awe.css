@@ -1,12 +1,15 @@
 ﻿:root {
     --theme-color: black;
     --theme-color-2: silver;
-    --awe-shadow: -2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3;
+    --awe-shadow: -2px -2px 4px rgba(0, 0, 0, .05),2px 2px 4px rgba(0, 0, 0, .05);
     --theme-bg-image: linear-gradient(to right,black,black);
 }
 html {
     font-size: 1em;
     
+}
+.awe-btn-hover:hover{
+    font-size:18px;
 }
 .awe-boxshadow{
     box-shadow:var(--awe-shadow);

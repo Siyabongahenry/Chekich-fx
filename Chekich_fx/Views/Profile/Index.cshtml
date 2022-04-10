@@ -6,18 +6,24 @@
 }
 <div class="profile-container">
     <div class="inner-container">
-        <h6>Personal Details</h6>
+        <h1>Personal Details</h1>
+        @if(ViewBag.NoAddress != null)
+        {
+            <div class="border p-2 text-center text-primary" style="background-color:lightblue">
+                <i class="fa fa-info-circle"></i> @ViewBag.NoAddress
+            </div>
+        }
         <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>      
         <div>
             <b>FirstName</b>
             <div id="FirstNameDisplayBlock">
-                <span id="NameLabel">@Html.DisplayFor(model => model.FirstName)</span>
+                <span id="FirstNameLabel">@Html.DisplayFor(model => model.FirstName)</span>
                 <div id="FirstNameSuccess" class="success d-none"></div>       
                 <button class="border-0" onclick="showEditBlock('FirstName')">Edit</button>
             </div>
             <div class="d-none" id="FirstNameEditBlock">
                 <input value="@Model.FirstName" name="FirstName" id="FirstNameInput"/>
-                <div id="FirstNameError"class="error d-none"></div>
+                <div id="FirstNameError" class="error d-none"></div>
                 <button class="border-0" onclick="saveInput('FirstName')">Save</button>
             </div>
         </div>
@@ -60,8 +66,8 @@
                 <button class="border-0" onclick="saveInput('Email')">Save</button>
             </div>
         </div>
-        <div class="addressBook-block">
-            <a asp-action="AddressBook" id="addressBook-link"> <i class="fa fa-address-book"></i> Address Book</a>
+        <div>
+            <a asp-controller="AddressManager" asp-action="Index"> <i class="fa fa-address-book"></i> Address Book</a>
         </div>
     </div>
 </div>

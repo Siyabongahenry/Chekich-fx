@@ -36,12 +36,27 @@ namespace Chekich_fx.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surbub")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TownOrCity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -238,7 +253,7 @@ namespace Chekich_fx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AtId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime")
@@ -249,7 +264,7 @@ namespace Chekich_fx.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AtId");
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("OrderId");
 
@@ -264,20 +279,20 @@ namespace Chekich_fx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ToId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("AddressId");
 
-                    b.HasIndex("ToId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Deliveries");
                 });
@@ -679,9 +694,11 @@ namespace Chekich_fx.Migrations
 
             modelBuilder.Entity("Chekich_fx.Models.Collection", b =>
                 {
-                    b.HasOne("Chekich_fx.Models.Address", "At")
+                    b.HasOne("Chekich_fx.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AtId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Chekich_fx.Models.Order", "Order")
                         .WithMany()
@@ -689,26 +706,28 @@ namespace Chekich_fx.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("At");
+                    b.Navigation("Address");
 
                     b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Chekich_fx.Models.Delivery", b =>
                 {
+                    b.HasOne("Chekich_fx.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Chekich_fx.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Chekich_fx.Models.Address", "To")
-                        .WithMany()
-                        .HasForeignKey("ToId");
+                    b.Navigation("Address");
 
                     b.Navigation("Order");
-
-                    b.Navigation("To");
                 });
 
             modelBuilder.Entity("Chekich_fx.Models.OnlinePayment", b =>

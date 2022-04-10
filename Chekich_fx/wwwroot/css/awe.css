@@ -105,16 +105,22 @@ button.accept-policy {
 /***/
 .error, .success {
     border: 1px solid #f3f3f3;
-    background-color:white;
     padding: 2%;
     border-radius:5px;
 }
 .error{
+    background-color:lightcoral;
     color:red;
    
 }
 .success {
+    background-color:lightgreen;
     color:#28a745;
+}
+.info-box {
+    padding: 1%;
+    color: #1b6ec2;
+    background-color:lightblue;
 }
 /*border*/
 .awe-border{

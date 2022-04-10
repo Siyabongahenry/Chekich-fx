@@ -1,6 +1,12 @@
-﻿.item-details {
+﻿h4{
+    background-color:#f3f3f3;
+    font-size:16px;
+    font-weight:900;
+}
+.item-details {
     font-size: 0.875em;
     padding: 2%;
+    overflow:auto;
 }
 
 .item-details img {
@@ -31,9 +37,24 @@
     padding:4px;
     font-weight:bold;
 }
+
+@media only screen and (min-width:335px) {
+    .item-details .image-container,
+    .item-details .p-description {
+        float: left;
+    }
+    .item-details .image-container {
+        width: 60%;
+        padding: 2%;
+    }
+    .item-details .p-description {
+        width: 40%;
+        padding: 2%;
+    }
+}
 @media only screen and (min-width:900px) {
      .item-details {
-        padding:2% 25% 2% 25%;
+        padding:2% 10% 2% 10%;
         width:100%;
     }
 

@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Demo</title>
+    <title>@ViewData["Title"] - Chekich-fx</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/awe.css" asp-append-version="true"/>
@@ -30,22 +30,23 @@
     {
          <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true"/>
     }
-    else if(url.Contains("/Track") )
+    else if(url.Contains("/OrderManager") )
     {
-         <link rel="stylesheet" href="~/css/trackitem.css" asp-append-version="true"/>
+         <link rel="stylesheet" href="~/css/ordermanager.css" asp-append-version="true"/>
     }
-    
     else if(url.Contains("/Chat"))
     {
         <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true"/>
     }  
-   
     else if(url.Contains("/Profile") )
     {
-         <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true"/>
     }
-   
-   
+    else if (url.Contains("/AddressManager/Create"))
+    {
+        <link rel="stylesheet" href="~/css/address_create.css" asp-append-version="true"/>
+    }
+
 </head>
 <body>
     <header>
@@ -84,7 +85,7 @@
                                 <li> <a asp-area="" asp-controller="Sales" asp-action="Index">Sales</a></li>
                             </ul>
                         </li>
-                         <li> <a asp-area="" asp-controller="Track" asp-action="Index">MyOrder</a></li>
+                         <li> <a asp-area="" asp-controller="OrderManager" asp-action="Status">MyOrder</a></li>
                         <li> <a asp-area="" asp-controller="Chat" asp-action="Index"><span>Messages</span>&nbsp;<span class="badge bg-theme text-white" id="message-link">@await Component.InvokeAsync("ChatNotification")</span></a></li>
                         <partial name="_LoginPartial" />
                     </ul>

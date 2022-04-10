@@ -27,8 +27,15 @@ namespace Chekich_fx.Controllers
             _db = db;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {   
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var address = await _db.Address.FirstOrDefaultAsync(a=>a.UserId==userId);
+            if (address == null)
+            {
+                return RedirectToAction("AddressManager","Index");
+            }
+
             return View();
         }
         [HttpPost]
@@ -87,7 +94,7 @@ namespace Chekich_fx.Controllers
                 ReceivalCost = transportCost,
                 UserId = userId
             };
-
+            order.OrderItems = new List<OrderItem>();
             foreach (var item in cart.CartItems)
             {
                 order.OrderItems.Add(new OrderItem()
@@ -98,11 +105,16 @@ namespace Chekich_fx.Controllers
                     Order = order,
                     Product = item.Product
                 });
+                cart.CartItems.Remove(item);
+
             }
             _db.Add(order);
             await _db.SaveChangesAsync();
-           
-            return RedirectToAction(nameof(Delivery));
+            if (_receivalType == ReceivalType.Delivery)
+            {
+                return RedirectToAction(nameof(Delivery));
+            }
+            return RedirectToAction(nameof(Collection));
         }
       
         public async Task<IActionResult> Delivery()
@@ -114,6 +126,7 @@ namespace Chekich_fx.Controllers
                    .ToListAsync();
             return View(addresses);
         }
+        [HttpPost]
         public async Task<IActionResult> Delivery(int _addressId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -130,10 +143,9 @@ namespace Chekich_fx.Controllers
         }
         public async Task<IActionResult> Collection()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = await _db.Address
                    .AsNoTracking()
-                   .Where(a => a.AddressType == AddressType.Delivery && a.UserId == userId)
+                   .Where(a => a.AddressType == AddressType.Collection)
                    .ToListAsync();
             return View(addresses);
         }
@@ -150,16 +162,9 @@ namespace Chekich_fx.Controllers
             };
             _db.Add(collection);
             await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Complete));
+            return RedirectToAction("Index","Payment");
         }
-        public IActionResult Payment()
-        {
-            return View();
-        }
-        public IActionResult Complete()
-        {
-            return View();
-        }
+        
         [HttpGet]
         public async Task<IActionResult> Status()
         {

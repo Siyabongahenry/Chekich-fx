@@ -51,14 +51,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/Setting/ColAddressBook.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2V0dGluZ1xDb2xBZGRyZXNzQm9vay5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/Setting/CreateColAddress.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2V0dGluZ1xDcmVhdGVDb2xBZGRyZXNzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/Setting/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2V0dGluZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -259,6 +251,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/AddressManager/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRkcmVzc01hbmFnZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/AddressManager/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRkcmVzc01hbmFnZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/AddressManager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRkcmVzc01hbmFnZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Cart/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -283,10 +287,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJNYW5hZ2VyXENvbGxlY3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/OrderManager/Complete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJNYW5hZ2VyXENvbXBsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/OrderManager/Confirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJNYW5hZ2VyXENvbmZpcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -303,16 +303,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJNYW5hZ2VyXFN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Profile/AddressBook.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxBZGRyZXNzQm9vay5jc2h0bWw=
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Payment/Complete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxDb21wbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Payment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Payment/Online.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxPbmxpbmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Profile/InsertAddress.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbnNlcnRBZGRyZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Views/Sales/Index.cshtml]

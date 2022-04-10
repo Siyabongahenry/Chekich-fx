@@ -7,24 +7,37 @@
     @if (Model.FirstOrDefault() != null)
     {
         <div>
-            Where would you like to collect your order?
+            <h1>Where would you like to collect your order?</h1>
             <form asp-action="Collection" method="post">
                 @foreach (Address address in Model)
                 {
-                    <address class="p-2" style="background-color:#f3f3f3">
-                        <label style="white-space:pre-wrap;display:block">
-                            <input type="radio" value="@address.Id"/>
-                            @address.Location
-                        </label>
-                        <b>@address.TownOrCity</b>
-                    </address>
+                    <div class="radio-containers">
+                        <input name="_addressId" type="radio" value="@address.Id" id="@address.Id" checked/>
+                        <div>
+                            <div>
+                                <label asp-for="@address.Id">@address.HouseNumber &nbsp; @address.StreetName</label>
+                            </div>
+                             <div>
+                                <label asp-for="@address.Id">@address.Surbub &nbsp; @address.Surbub</label>
+                            </div>
+                            <div>
+                                <label asp-for="@address.Id">@address.TownOrCity</label>
+                            </div>
+                             <div>
+                                <label asp-for="@address.Id">@address.Code</label>
+                            </div>
+                        </div>
+                    </div>
                 }
+                <div class="text-center mt-2">
+                    <button class="btn btn-primary" type="submit">Confirm</button>
+                </div>
             </form>
         </div>
     }
     else
     {
-        <h4>We don't have any collection addresses yet, we only do deliveries. Please use the button below for deliveries.</h4>
+        <h1>We don't have any collection addresses yet, we only do deliveries. Please use the button below for deliveries.</h1>
         <div>
             <a class="btn btn-primary" asp-action="Delivery">Deliver My Order</a>
         </div>

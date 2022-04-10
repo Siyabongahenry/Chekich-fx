@@ -2,12 +2,14 @@
 //Side Nav
 function openSideNav() {
     var sidenav = document.getElementsByClassName("menu-2")[0];
-    if (sidenav.classList.contains("side-nav-w")) {
-        sidenav.classList.remove("side-nav-w");
+    if (sidenav.style.marginLeft == "" || sidenav.style.marginLeft == "-80%") {
+        sidenav.style.marginLeft = "0%";
     }
     else {
-        sidenav.classList.add("side-nav-w");
+        sidenav.style.marginLeft = "-80%";
+
     }
+    
 }
 function openSubMenu(btn,sub_menu_id,menu_name) {
     var submenu = document.getElementById(sub_menu_id);

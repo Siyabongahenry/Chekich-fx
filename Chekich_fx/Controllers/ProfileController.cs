@@ -19,7 +19,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Chekich_fx.Controllers
 {
     [Authorize]
-    //[AutoValidateAntiforgeryToken]
+    [AutoValidateAntiforgeryToken]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -35,7 +35,13 @@ namespace Chekich_fx.Controllers
         {
             try
             {
+
                 ApplicationUser applicationUser = await _userManager.GetUserAsync(User);
+                bool address = await _db.Address.AnyAsync(a => a.UserId == applicationUser.Id);
+                if(address == false)
+                {
+                    ViewBag.NoAddress = "Please add your address on the address book below to start shopping online.";
+                }
                 return View(applicationUser);
             }
             catch
