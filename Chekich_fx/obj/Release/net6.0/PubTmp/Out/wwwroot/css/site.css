@@ -2,6 +2,10 @@
 *{
     box-sizing:border-box;
 }
+h1{
+    font-size:1.25em;
+    font-weight:bold;
+}
 .main-body {
     margin-top: 40px;
 }
@@ -45,6 +49,7 @@ nav button,nav a{
     border-left:1px solid white;
     border-right:1px solid white;
     text-align:center;
+    font-size:1.25em;
 }
 nav button:focus,nav a:focus{
     outline:none;
@@ -73,10 +78,9 @@ nav .menu-2{
     height:calc(100vh - 40px);
     overflow-y:auto;
     overflow-x:hidden;
-    transition:width 0.3s;
-}
-nav .side-nav-w{
     width:80%;
+    margin-left:-80%;
+    transition:margin 0.5s;
 }
 nav .menu-2 .sub-menu{
     overflow:hidden;
@@ -88,12 +92,15 @@ nav .menu-2 a,nav .menu-2 button{
     overflow:hidden;
     font-family:Verdana;
     font-weight:bold;
-    font-size:0.875rem;
     background-color:inherit;
    
 }
 nav .menu-2 ul,nav .menu-2 .sub-menu{
     padding-left:10px;
+}
+nav .menu-2 ul li{
+    line-height:initial;
+    padding:2%;
 }
 nav a:hover,nav button:hover{
     background-color:var(--theme-color);
@@ -151,13 +158,6 @@ nav a:hover,nav button:hover{
         transform:rotate(360deg);
     }
 }
-
-@media only screen and (min-width:500px) {
-    nav .side-nav-w {
-        width:50%;
-    }
-    
-}
 @media only screen and (min-width:900px) {
     .for-mob{
         display:none;
@@ -173,15 +173,14 @@ nav a:hover,nav button:hover{
         flex-direction:row;
         justify-content:center;
     }
-    nav .side-nav-w {
-        width:initial;
-    }
+   
     nav .menu-2{
         position:initial;
         width:initial;
         height:initial;
         overflow-x:initial;
         overflow-y:initial;
+        margin-left:initial;
     }
     nav .menu-1,nav .menu-2{
         float:left;
@@ -209,6 +208,11 @@ nav a:hover,nav button:hover{
     }
     nav a,nav button{
         padding:0 20px 0 20px;
+        font-size:0.875em;
+    }
+    nav .menu-2 ul li {
+        line-height: 40px;
+        padding:initial;
     }
    
 }

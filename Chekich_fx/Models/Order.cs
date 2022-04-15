@@ -15,7 +15,6 @@ namespace Chekich_fx.Models
         public DateTime DateTime { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal ReceivalCost { get; set; }
-        public ReceivalType ReceivalType { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal TotalPrice
         {
@@ -33,6 +32,11 @@ namespace Chekich_fx.Models
         }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
-    
+        [Required]
+        public string Status { get; set; }
+        public OnlinePayment OnlinePayment { get; set; }
+        public CashPayment CashPayment { get;set; }
+        public Delivery Delivery { get; set; }
+        public Collection Collection { get; set; }
     }
 }

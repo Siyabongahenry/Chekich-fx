@@ -95,7 +95,7 @@
 }
 
 
-@media only screen and (min-width:300px) {
+@media only screen and (min-width:481px) {
     .store-container {
         flex-direction: row;
         flex-wrap: wrap;
@@ -104,12 +104,7 @@
         width: 50%;
     }
 }
-@media only screen and (min-width:500px) {
-    
-    .store-container > div {
-        width: 33.33%;
-    }
-}
+
 @media only screen and (min-width:900px) {
     .store-main-container {
         position: relative;

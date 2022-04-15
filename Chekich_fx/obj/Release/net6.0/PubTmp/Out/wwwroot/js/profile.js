@@ -57,7 +57,7 @@ async function saveInput(inputName) {
             label.innerText = value;
             hideEditBlock(inputName);
             var successBlock = document.getElementById(inputName + "Success");
-            if (inputName = "Email") {
+            if (inputName == "Email") {
                 successMessage ="Please check your emails!!"
             }
             successBlock.innerHTML = successMessage;

@@ -33,16 +33,17 @@ namespace Chekich_fx.Controllers
         }
 
         // GET: AddressManagerController/Create
-        public ActionResult Create()
+        public ActionResult Create(string returnUrl)
         {
             ViewBag.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         // POST: AddressManagerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Address _address)
+        public async Task<IActionResult> Create(Address _address,string _returnUrl=null)
         {
             if (!ModelState.IsValid)
             {
@@ -52,6 +53,10 @@ namespace Chekich_fx.Controllers
             {
                 _db.Add(_address);
                 await _db.SaveChangesAsync();
+                if(_returnUrl != null && Url.IsLocalUrl(_returnUrl))
+                {
+                    return Redirect(_returnUrl);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

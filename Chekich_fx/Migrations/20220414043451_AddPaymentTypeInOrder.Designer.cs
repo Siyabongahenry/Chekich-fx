@@ -4,6 +4,7 @@ using Chekich_fx.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chekich_fx.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220414043451_AddPaymentTypeInOrder")]
+    partial class AddPaymentTypeInOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,8 +210,7 @@ namespace Chekich_fx.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("CashPayments");
                 });
@@ -267,8 +268,7 @@ namespace Chekich_fx.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Collections");
                 });
@@ -294,8 +294,7 @@ namespace Chekich_fx.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Deliveries");
                 });
@@ -319,8 +318,7 @@ namespace Chekich_fx.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OnlinePayments");
                 });
@@ -336,8 +334,14 @@ namespace Chekich_fx.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PaymentType")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("ReceivalCost")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ReceivalType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -670,8 +674,8 @@ namespace Chekich_fx.Migrations
             modelBuilder.Entity("Chekich_fx.Models.CashPayment", b =>
                 {
                     b.HasOne("Chekich_fx.Models.Order", "Order")
-                        .WithOne("CashPayment")
-                        .HasForeignKey("Chekich_fx.Models.CashPayment", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -704,8 +708,8 @@ namespace Chekich_fx.Migrations
                         .IsRequired();
 
                     b.HasOne("Chekich_fx.Models.Order", "Order")
-                        .WithOne("Collection")
-                        .HasForeignKey("Chekich_fx.Models.Collection", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -723,8 +727,8 @@ namespace Chekich_fx.Migrations
                         .IsRequired();
 
                     b.HasOne("Chekich_fx.Models.Order", "Order")
-                        .WithOne("Delivery")
-                        .HasForeignKey("Chekich_fx.Models.Delivery", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -736,8 +740,8 @@ namespace Chekich_fx.Migrations
             modelBuilder.Entity("Chekich_fx.Models.OnlinePayment", b =>
                 {
                     b.HasOne("Chekich_fx.Models.Order", "Order")
-                        .WithOne("OnlinePayment")
-                        .HasForeignKey("Chekich_fx.Models.OnlinePayment", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -870,14 +874,6 @@ namespace Chekich_fx.Migrations
 
             modelBuilder.Entity("Chekich_fx.Models.Order", b =>
                 {
-                    b.Navigation("CashPayment");
-
-                    b.Navigation("Collection");
-
-                    b.Navigation("Delivery");
-
-                    b.Navigation("OnlinePayment");
-
                     b.Navigation("OrderItems");
                 });
 

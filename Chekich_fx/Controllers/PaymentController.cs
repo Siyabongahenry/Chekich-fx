@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chekich_fx.Data;
 using Chekich_fx.Enums;
 using Chekich_fx.Models;
+using Chekich_fx.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -41,20 +42,38 @@ namespace Chekich_fx.Controllers
         public async Task<IActionResult> Online()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = await _db.Order.FirstOrDefaultAsync(o => o.UserId == userId);
-
-            OnlinePayment payment = new OnlinePayment
+            var order = await _db.Order
+                .AsNoTracking()
+                .OrderBy(a => a.DateTime)
+                .LastOrDefaultAsync(o => o.UserId == userId);
+            if (order != null)
             {
-                Amount = order.TotalPrice,
-                OrderId = order.Id,
-                DateTime = DateTime.Now
-            };
-            return View(payment);
+                bool hasPayment = await _db.OnlinePayments.AnyAsync(o => o.OrderId == order.Id);
+                if (hasPayment)
+                {
+                    return RedirectToAction("Order", "Status");
+                }
+
+                OnlinePayment payment = new OnlinePayment
+                {
+                    Amount = order.TotalPrice,
+                    OrderId = order.Id,
+                    DateTime = DateTime.Now
+                };
+                return View(payment);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
+        [HttpPost]
         public async Task<IActionResult> Online(string referenceId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = await _db.Order.FirstOrDefaultAsync(o => o.UserId == userId);
+            var order = await _db.Order
+                .OrderBy(a => a.DateTime)
+                .LastOrDefaultAsync(o => o.UserId == userId);
 
             OnlinePayment payment = new OnlinePayment
             {
@@ -62,27 +81,49 @@ namespace Chekich_fx.Controllers
                 OrderId = order.Id,
                 DateTime = DateTime.Now
             };
-            return View(payment);
+           
+            _db.Add(payment);
+
+            order.Status = OStatus.Pending;
+
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Complete));
         }
 
         public async Task<IActionResult> Cash()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = await _db.Order.FirstOrDefaultAsync(o => o.UserId == userId);
-
-            CashPayment payment = new CashPayment
+            var order = await _db.Order
+                .OrderBy(a => a.DateTime)
+                .LastOrDefaultAsync(o => o.UserId == userId);
+            if (order != null)
             {
-                Amount = order.TotalPrice,
-                OrderId = order.Id,
-                DateTime = DateTime.Now
-            };
-            await _db.AddAsync(payment);
-            return RedirectToAction(nameof(Complete));
+                var hasPayment = await _db.CashPayments.AnyAsync(c => c.OrderId == order.Id);
+                if (hasPayment)
+                {
+                    return RedirectToAction("OrderManager", "Status");
+                }
+                CashPayment payment = new CashPayment
+                {
+                    Amount = order.TotalPrice,
+                    OrderId = order.Id,
+                    DateTime = DateTime.Now
+                };
+                _db.Add(payment);
+
+                order.Status = OStatus.Pending;
+               
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Complete));
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         public IActionResult Complete()
         {
             return View();
         }
-
     }
 }

@@ -1,16 +1,89 @@
 ﻿@model IEnumerable<Chekich_fx.Models.Order>
+@using Chekich_fx.Enums
 @{
     ViewData["Title"] = "Order";
 }
 <div class="container">
     @if (Model.FirstOrDefault() != null)
     {
-        <div>
-            <h1>Your orders are listed below</h1>
+        <h1 class="text-center bg-theme text-primary">Your orders are listed below</h1>
+        <div class="row">
             @foreach (Order order in Model)
             {
-                <div>
-                    
+                <div class="col-12 col-lg-3 p-2">
+                    <div class="awe-boxshadow p-2">
+                        <div class="text-center">
+                            Status: <span class="text-primary">@order.Status</span>
+                        </div>
+                        @foreach(OrderItem item in order.OrderItems)
+                        {
+                            <div class="text-center">
+                                <div>
+                                    <img width="100" src="/Images/Store/Product/@item.Product.ImageFileName"/>
+                                </div>
+                                <div>
+                                    <a asp-controller="Store" asp-action="Details" asp-route-Id="@item.Product.Id" asp-route-returnUrl="@Context.Request.Path">
+                                        <b>@item.Product.Name</b>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div class="text-center">
+                            <hr/>
+                            <div class="text-center">
+                                Price : @Html.DisplayFor(model=>order.TotalPrice)
+                            </div>
+                            <div class="text-center">
+                                <h2>Payment</h2>
+                                @if(order.CashPayment != null && order.Delivery !=  null )
+                                {
+                                    <span>To be paid on delivery</span>
+                                }
+                                else if(order.CashPayment != null && order.Collection !=  null)
+                                {
+                                    <span>To be paid on collection</span>
+
+                                }
+                                else if(order.OnlinePayment !=null)
+                                {
+                                    <span>Paid Online</span>
+                                }
+                            </div>
+                            <div>
+                                @if(order.Delivery != null)
+                                {
+                                    <h2>Delivery Apddress</h2>                               
+                                    <address>
+                                        @order.Delivery.Address.HouseNumber
+                                        @order.Delivery.Address.StreetName
+                                        <br>
+                                        @order.Delivery.Address.TownOrCity
+                                        <br>
+                                        @order.Delivery.Address.Code
+                                    </address>
+                                }
+                                else if(order.Collection != null)
+                                {
+                                    <h2>Collection Address</h2>
+                                    <address>
+                                        @order.Collection.Address.HouseNumber
+                                        @order.Collection.Address.StreetName
+                                        <br>
+                                        @order.Collection.Address.TownOrCity
+                                        <br>
+                                        @order.Collection.Address.Code
+                                    </address>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary">Add Delivery Address</a>
+                                }
+                            </div>
+                            <div>
+                                <a asp-action="" class="btn btn-primary">View Order Details</a>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             }
         </div>
