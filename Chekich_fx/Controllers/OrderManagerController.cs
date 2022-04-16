@@ -92,7 +92,8 @@ namespace Chekich_fx.Controllers
                 DateTime = DateTime.Now,
                 ReceivalCost = transportCost,
                 UserId = userId,
-                Status = OStatus.InComplete
+                Status = OStatus.InComplete,
+                ReceivalType =_receivalType
             };
             order.OrderItems = new List<OrderItem>();
             foreach (var item in cart.CartItems)
@@ -189,28 +190,7 @@ namespace Chekich_fx.Controllers
             }
             return RedirectToAction("Index", "Payment");
         }
-        [HttpGet]
-        public async Task<IActionResult> Status()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var orders = await _db.Order
-                .AsNoTracking()
-                .Include(o=>o.OrderItems)
-                .ThenInclude(oi=>oi.Product)
-                .Include(o=>o.CashPayment)
-                .Include(o => o.OnlinePayment)
-                .Include(o => o.Delivery)
-                .ThenInclude(d=>d.Address)
-                .Include(o => o.CashPayment)
-                .Include(o => o.Collection)
-                .ThenInclude(c=>c.Address)
-                .Where(o => o.UserId == userId)
-                .OrderByDescending(o=>o.DateTime)
-                .ToListAsync();
-
-            return View(orders);
-        }
-        
+       
         [HttpGet]
         public async Task<string> GetAddress(AddressType addressType)
         {

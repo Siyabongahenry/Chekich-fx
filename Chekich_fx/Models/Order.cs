@@ -34,9 +34,8 @@ namespace Chekich_fx.Models
         public ApplicationUser User { get; set; }
         [Required]
         public string Status { get; set; }
-        public OnlinePayment OnlinePayment { get; set; }
-        public CashPayment CashPayment { get;set; }
-        public Delivery Delivery { get; set; }
-        public Collection Collection { get; set; }
+        public PaymentType PaymentType { get; set; }
+        public ReceivalType ReceivalType { get; set; }
+       
     }
 }

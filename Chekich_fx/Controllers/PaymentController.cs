@@ -85,7 +85,7 @@ namespace Chekich_fx.Controllers
             _db.Add(payment);
 
             order.Status = OStatus.Pending;
-
+            order.PaymentType = PaymentType.Online;
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Complete));
         }
@@ -112,7 +112,7 @@ namespace Chekich_fx.Controllers
                 _db.Add(payment);
 
                 order.Status = OStatus.Pending;
-               
+                order.PaymentType = PaymentType.Cash;
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Complete));
             }

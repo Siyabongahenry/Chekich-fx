@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jKdd5r+lnDj5CD5zeyjtOx1Xn7lCv/VJyOFrKesm0c0=",
+  "Hash": "nQIl+vdXbCPX/xyXBuoRPa5djAB57X8/liQUorO8Y1Q=",
   "Source": "Chekich_fx",
   "BasePath": "_content/Chekich_fx",
   "Mode": "Default",
@@ -1785,23 +1785,6 @@
       "OriginalItemSpec": "wwwroot\\css\\store.css"
     },
     {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\trackitem.css",
-      "SourceId": "Chekich_fx",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
-      "BasePath": "_content/Chekich_fx",
-      "RelativePath": "css/trackitem.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\trackitem.css"
-    },
-    {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\favicon.ico",
       "SourceId": "Chekich_fx",
       "SourceType": "Discovered",
@@ -2089,6 +2072,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\order.js"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\js\\order_tracking.js",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "js/order_tracking.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\order_tracking.js"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\js\\p_details.js",
