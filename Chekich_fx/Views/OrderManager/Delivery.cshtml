@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Chekich_fx.Models.Address>
 @{
-    ViewData["Title"] = "Collection";
+    ViewData["Title"] = "Delivery";
 }
 <div class="container">
 
     @if (Model.FirstOrDefault() != null)
     {
         <div>
-            <h1>Where would you like to collect your order?</h1>
-            <form asp-action="Collection" method="post">
+            <h1>Please Select Your Preferred Residential Address Below</h1>
+            <form asp-action="Delivery" method="post">
                 @foreach (Address address in Model)
                 {
                     <div class="radio-containers">

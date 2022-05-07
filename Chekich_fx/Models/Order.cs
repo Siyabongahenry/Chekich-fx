@@ -34,8 +34,8 @@ namespace Chekich_fx.Models
         public ApplicationUser User { get; set; }
         [Required]
         public string Status { get; set; }
-        public PaymentType PaymentType { get; set; }
-        public ReceivalType ReceivalType { get; set; }
+        public PaymentType? PaymentType { get; set; }
+        public ReceivalType? ReceivalType { get; set; }
        
     }
 }

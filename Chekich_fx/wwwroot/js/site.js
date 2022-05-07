@@ -55,14 +55,16 @@ function topFunction() {
 }
 
 //Spinner
-function start_Spinner(btn,spinner_id) {
+function startOrStop_Spinner(btn,spinner_id) {
     btn.style.display = "none";
     var spinner = document.getElementById(spinner_id);
-    spinner.style.display = "inline-block";
+    
     if (spinner.classList.contains("spinner-animation")) {
+        spinner.style.display = "none";
         spinner.classList.remove("spinner-animation");
     }
     else {
+        spinner.style.display = "inline-block";
         spinner.classList.add("spinner-animation");
     }
 }

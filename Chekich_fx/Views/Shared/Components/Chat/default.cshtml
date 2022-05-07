@@ -6,7 +6,7 @@
 }
 <div class="chat-screen" id="chat-screen-@Model.Id">
     <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
-    <div class="text-center p-2 text-white bg-theme">
+    <div class="chat-head">
         <button onclick="closeChatScreen('chat-screen-@Model.Id')" class="float-left border-0">x</button>
         @if (ViewBag.IsAdmin == true)
         {

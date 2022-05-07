@@ -5,7 +5,7 @@
     string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <div class="container">
-    <h1 class="p-2">How would you like to receiver your order?</h1>   
+    <h1 class="p-2">How would you like to receive your order?</h1>   
     <div id="receivalType-container">
         <form asp-action="Confirm" method="post">
             <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>

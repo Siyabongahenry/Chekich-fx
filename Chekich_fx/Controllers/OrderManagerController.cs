@@ -38,8 +38,12 @@ namespace Chekich_fx.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Confirm(ReceivalType _receivalType)
+        public async Task<IActionResult> Confirm(ReceivalType? _receivalType)
         { 
+            if(_receivalType == null)
+            {
+                return NotFound();
+            }
             var transportCost = 0;
             if (_receivalType == ReceivalType.Delivery)
             {
@@ -66,8 +70,12 @@ namespace Chekich_fx.Controllers
             return View(CRVM);
         }
         [HttpPost]
-        public async Task<IActionResult> Submit(ReceivalType _receivalType)
+        public async Task<IActionResult> Submit(ReceivalType? _receivalType)
         {
+            if (_receivalType == null)
+            {
+                return NotFound();
+            }
             var transportCost = 0;
             if (_receivalType == ReceivalType.Delivery)
             {
@@ -92,7 +100,7 @@ namespace Chekich_fx.Controllers
                 DateTime = DateTime.Now,
                 ReceivalCost = transportCost,
                 UserId = userId,
-                Status = OStatus.InComplete,
+                Status = Status.InComplete,
                 ReceivalType =_receivalType
             };
             order.OrderItems = new List<OrderItem>();
@@ -164,7 +172,7 @@ namespace Chekich_fx.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Collection(int _addressId)
-        {
+        {       
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             bool addressExist = await _db.Address.AnyAsync(a => a.Id == _addressId && a.AddressType == AddressType.Collection);
             var order = await _db.Order

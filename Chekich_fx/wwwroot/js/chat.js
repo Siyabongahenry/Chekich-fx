@@ -23,8 +23,8 @@ connection.on("ReceiveTypingAlert", function (screen_id)
     var icon = document.createElement("i");
     icon.classList.add("fa", "fa-smile");
     var typingAlertBox = document.getElementById("typing-alert-" + screen_id);
-   var small_typingAlert = document.getElementById("small-chat-" + screen_id)
-   var small_chatValue = small_typingAlert.innerHTML;
+    var small_typingAlert = document.getElementById("small-chat-" + screen_id)
+    var small_chatValue = small_typingAlert.innerHTML;
     if (typingAlertBox.innerHTML !="typing..") {
         typingAlertBox.innerHTML = "typing..";
        small_typingAlert.style.color = "green";
@@ -193,10 +193,10 @@ function openCloseChat(openChat, id) {
         if (chat_screens[i].classList.contains("d-block")) {
             chat_screens[i].classList.replace("d-block", "d-none");
         }
-        viewed_screen[i].classList.replace("bg-theme-image","bg-theme");
+        viewed_screen[i].classList.replace("bg-viewed-chat","bg-not-chat");
     }
   
-    openChat.classList.add("bg-theme-image");
+    openChat.classList.add("bg-viewed-chat");
     chat_screen.classList.replace("d-none", "d-block");
    
 }

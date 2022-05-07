@@ -15,44 +15,75 @@
             {
                 <div class="col-12 col-lg-3 p-2">
                     <div class="awe-boxshadow p-2">
-                        
-                        <div class="text-center">
-                            Status: <span class="text-primary">@order.Status</span>
-                        </div>
                         @foreach(OrderItem item in order.OrderItems)
                         {
                             <div class="text-center">
                                 <div>
-                                    <img width="100" src="/Images/Store/Product/@item.Product.ImageFileName"/>
+                                    <img width="100" src="/Images/Store/Product/@item.Product.ImageFileName" style="border-radius:5px"/>
                                 </div>
                                 <div>
                                     <a asp-controller="Store" asp-action="Details" asp-route-Id="@item.Product.Id" asp-route-returnUrl="@Context.Request.Path">
-                                        <b>@item.Product.Name</b>
+                                        <b style="color:black">@item.Product.Name</b>
                                     </a>
                                 </div>
                             </div>
                         }
                         <div class="text-center">
                             <hr/>
-                            <div class="text-center">
-                                Price : @Html.DisplayFor(model=>order.TotalPrice)
-                            </div>
+                           
                             <div class="text-center mb-2">  
-                                @if(order.ReceivalType == ReceivalType.Delivery)
-                                {
-                                    <button class="bg-primary" onclick="GetDelivery(@order.Id)">Delivery Address <i class="fa fa-caret-down"></i></button>
-                                }
-                                else
-                                {
-                                    <button class="bg-primary" onclick="GetCollection(@order.Id)">Collection Address <i class="fa fa-caret-down"></i></button>
-                                }
-                                <div id="StreetName-@order.Id"></div>
-                               <div id="TownOrCity-@order.Id"></div>
-                               <div id="Code-@order.Id"></div>
+                                 <div class="text-center">
+                                    Status: <span class="text-primary">@order.Status</span>
+                                 </div>
+                                 <div>
+                                    @if(order.ReceivalType != null && order.ReceivalType == ReceivalType.Delivery)
+                                    {
+                                        <button class="bg-primary border-0 text-white" onclick="GetDelivery(this,@order.Id)">Delivery Details <i class="fa fa-caret-down"></i></button>
+                                    
+                                    }
+                                    else if(order.ReceivalType != null && order.ReceivalType == ReceivalType.Collection)
+                                    {
+                                        <button class="bg-primary border-0 text-white" onclick="GetCollection(this,@order.Id)">Collection Details <i class="fa fa-caret-down"></i></button>
+                                    }
+                                    <div class="error d-none" id="error-@order.Id"></div>
+                                    <div id="addressType-@order.Id"></div>
+                                    <div id="StreetName-@order.Id"></div>
+                                    <div id="TownOrCity-@order.Id"></div>
+                                    <div id="Code-@order.Id"></div>
+                                    <div id="dateType-@order.Id"></div>
+                                    <div id="date-@order.Id"></div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="spinner" id="spinner-@order.Id"></div>
+                                </div>
+                                <div class="mt-2">
+                                    @if(order.PaymentType != null && order.PaymentType == PaymentType.Cash)
+                                    {
+                                        <b>Amount due to you: @Html.DisplayFor(model=>order.TotalPrice)</b>
+                                        @if (order.ReceivalType == ReceivalType.Delivery)
+                                        {
+                                            <div class="info-box">
+                                                <i class="fa fa-info-circle"></i>&nbsp;
+                                                You should have the amount above to be able to receive your order during the delivery.
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="info-box">
+                                                <i class="fa fa-info-circle"></i>&nbsp;
+                                                You should bring the amount above along with you during your collection to receive your order.
+                                            </div>  
+                                        }
+                                    }
+                                    else if(order.PaymentType != null && order.PaymentType == PaymentType.Online){
+                                        <b>Amount due to you: R0</b>
+                                        <div class="success">
+                                            Thank you for using our online platform to pay for your order, we will verify your payment and make sure you receive your order on time. Thank you.
+                                        </div>
+                                    }
+                                </div>
                             </div>         
-                            <div>
-                                <a asp-action="" class="btn btn-primary">View Order Details</a>
-                            </div>
+        
                         </div>
                     </div> 
                 </div>

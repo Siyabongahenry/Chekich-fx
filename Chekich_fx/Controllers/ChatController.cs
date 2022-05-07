@@ -71,7 +71,7 @@ namespace Chekich_fx.Controllers
             var SRI = new SenderReceiverInfo();
             try
             {
-                var receiver = await _userManager.GetUsersInRoleAsync(URole.SuperAdmin);
+                var receiver = await _userManager.GetUsersInRoleAsync(URole.Admin);
 
                 //consider using this code for production
                 //if (User.IsInRole(URole.Admin) || User.IsInRole(URole.SuperAdmin) || User.IsInRole(URole.SuperManager))

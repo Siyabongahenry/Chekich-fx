@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Chekich_fx.Utility
 {
-    public static class OStatus
+    public static class Status
     {
         public const string Pending = "Pending";
         public const string Cancelled = "Cancelled";
