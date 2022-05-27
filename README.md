@@ -4,4 +4,8 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
 
 ![alt text](https://github.com/Siyabongahenry/Chekich-fx/blob/main/store-1.png)
 
+<p align="center">
+  <img src="https://github.com/Siyabongahenry/Chekich-fx/blob/main/store-1.png"/>
+</p>
+
 
