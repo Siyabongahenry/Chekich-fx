@@ -9,9 +9,10 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-4.png"/>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-5.png"/>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-6.png"/>
-  
+  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-7.png"/>
+  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-8.png"/>
 </p>
-##Built in chatting app
+**Built in chatting app**
 <p align="center>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Chat/chat-1.png"/>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Chat/chat-2.png"/>
