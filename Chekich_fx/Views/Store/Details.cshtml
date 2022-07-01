@@ -2,71 +2,97 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div class="item-details">
-    <h4 class="text-center p-1">Showing Details</h4>
-    <div class="image-container">
-        <div style="box-shadow:-4px -4px 4px #f3f3f3,4px 4px 4px #f3f3f3;padding:2%;overflow:hidden;">
-            @if (Model.DiscountPrice > 0)
-            {
-                <div class="discount-tag">
-                    @Model.DiscountPercentage
-                </div>
-            }
-            <form asp-action="AddProductToCart" method="post">
-                <div class="text-right w-100">          
-                    <input type="hidden" asp-for="Id" />      
-                    <button type="submit" class="bg-theme text-primary p-2 border-0 awe-btn-hover" style="font-weight:bold"><i class="fa fa-shopping-cart"></i> Add To Cart</button>   
-                    <div class="spinner"></div>
-                </div>
-                <div class="text-left" style="height:16px;line-height:16px;">
-                    <span class="text-danger" style="font-size:0.6875rem;font-family:Verdana" id="remItem"></span>
-                </div>
-                <div class="p-2 text-center">
-                    <img src="/Images/Store/Product/@Model.ImageFileName" alt="Alternate Text" style="border-radius:5px"/>
-                        @if(Model.Sizes != null)
-                    {
-                        <div class="text-center" >
-                            <div class="d-inline-block">
-                                <b class="w-100 d-block text-theme">Sizes</b>
-                            </div>
-                            @foreach(ShoeSize shoeSize in Model.Sizes.OrderBy(s=>s.Size)){
-                                <div class="d-inline-block border p-1 mt-1">
-                                    <input type="radio" name="ShoeSize" value="@shoeSize.Size" checked data-size-quantity="@shoeSize.Quantity" onclick="showSizesRem()"/>
-                                    <b class="text-theme">@shoeSize.Size</b>
-                                </div>
-                            }
-                        </div>
-                    }     
-                </div>
-                </form>
-            
-            <div class="p-2">
-                <div class="text-center">
-                    <b style="font-size:1rem">@Html.DisplayFor(model => model.Name)</b>
-                </div>
-                <div class="text-right text-theme">
+<div class="container">
+    <h1>Shoe details</h1>
+    <div class="row">
+        <div class="col-12 col-lg-6 p-2">
+            <input type="hidden" asp-for="Id" />  
+            <div class="item-container border">
+                <div class="details-menu">
                     @if (Model.DiscountPrice > 0)
                     {
-                        <b class="text-theme" style="text-decoration-line:line-through;font-size:0.625rem;font-weight:900;text-shadow:none">@Html.DisplayFor(modelitem => Model.Price)</b>
-                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => Model.FinalPrice)</b>
-                    }
-                    else
-                    {
-                        <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => Model.Price)</b>
-                    }
+                        <div class="discount-tag">
+                            @Model.DiscountPercentage
+                        </div>
+                    }      
+                    <button class="btn-favourite btn-store-hover"><i class="fa fa-heart"></i><i class="fa fa-heart click-effect"> </i></button>
+                    <button class="btn-cart btn-store-hover"><i class="click-effect">+1</i>+ <i class="fa fa-shopping-cart"></i></button>   
+                </div>
+                <div class="text-left" style="height:16px;line-height:16px;">
+                </div>
+                <div class="p-2 text-center">
+                    <img class="rounded"  src="/Images/Store/Product/@Model.ImageFileName" alt="shoe image" />
+                    <h3>@Html.DisplayFor(model => model.Name)</h3>
+                </div>
+                
+                <div class="p-2">
+                    <div class="text-right">
+                        @if (Model.DiscountPrice > 0)
+                        {
+                            <span class="price original-price">@Html.DisplayFor(modelitem => Model.Price)</span>
+                            <span class="price current-price">@Html.DisplayFor(modelitem => Model.FinalPrice)</span>
+                        }
+                        else
+                        {
+                            <span class="price current-price">@Html.DisplayFor(modelitem => Model.Price)</span>
+                        }
+                    </div>
+                </div>
+                <div class="size-group">
+                     <h3>Available Sizes</h3>
+                     <div class="sizes">
+                         @if(Model.Sizes != null)
+                         {  <div>
+                                <small>Select size below</small>
+                            </div>
+                            @foreach(ShoeSize shoeSize in Model.Sizes.OrderBy(s=>s.Size)){
+                                <div class="size">     
+                                    <input id="shoe-size-@shoeSize.Size" type="radio" name="ShoeSize" value="@shoeSize.Size" checked data-size-quantity="@shoeSize.Quantity" onclick="showSizesRem()"/>
+                                    <label for="shoe-size-@shoeSize.Size">
+                                        <b class="text-theme">@shoeSize.Size</b>
+                                    </label>
+                                </div>
+                            }   
+                        }
+                        <div>
+                            <small class="text-danger" id="remaining-items"></small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="p-description">
-        <div class="p-2" style="box-shadow: -4px -4px 4px #f3f3f3,4px 4px 4px #f3f3f3;">
-            <b class="text-left"><b>Discription</b></b>  
-            <p style="white-space:pre-wrap">@Html.DisplayFor(model => model.Description)</p>
-            <hr />
-            <div>
-                <a class="awe-btn-outline d-inline-block" href="@ViewBag.ReturnUrl">Go Back</a>
+        <div class="col-12 col-lg-6 p-2">
+            <div class="description-container border">
+                <h2>Description</h2>
+                <table class="table">
+                    <tr>
+                        <th>Property</th>
+                        <th></th>
+                    </tr>
+                   
+                    <tr>
+                        <td>Color</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>Sneaker</td>
+                    </tr>
+                </table>
+              
             </div>
         </div>
-    </div>
+        <div class="col-12 col-lg-6">
+            <div class="more">
+                <h3 ><i class="fa fa-info-circle"></i> More</h3>
+                <p style="white-space:pre-wrap">@Html.DisplayFor(model => model.Description)</p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+             <div class="text-center">
+                <a class="btn-back" href="@ViewBag.ReturnUrl">back to store <br /><i class="fa fa-arrow-left"></i> </a>
+            </div>
+        </div>
+    </div> 
 </div>
  <script src="~/js/p_details.js" asp-append-version="true"></script>

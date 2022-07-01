@@ -1,103 +1,84 @@
 ﻿:root {
-    --theme-color: black;
-    --theme-color-2: silver;
-    --awe-shadow: -2px -2px 4px rgba(0, 0, 0, .05),2px 2px 4px rgba(0, 0, 0, .05);
-    --theme-bg-image: linear-gradient(to right,black,black);
+    --theme-color: #ff006e;
 }
 html {
     font-size: 1em;
     
 }
-.awe-btn-hover:hover{
-    font-size:18px;
-}
-.awe-boxshadow{
-    box-shadow:var(--awe-shadow);
-}
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-/*background color*/
+
 .bg-theme {
     background-color:var(--theme-color);
-}
-.bg-theme-2 {
-    background-color: var(--theme-color-2);
-}
-.bg-darkseagreen {
-    background-color: darkseagreen;
-}
-.bg-darkcyan {
-    background-color: darkcyan;
-}
-.bg-blueviolet{
-    background-color:blueviolet;
-}
-.bg-theme-image {
-    background-image:var(--theme-bg-image);
 }
 /*text-color*/
 .text-theme {
     color:var(--theme-color);
 }
-.text-theme-2 {
-    color: var(--theme-color-2);
-}
-.text-grey{
-    color:grey;
-}
-.border-top {
-    border-top: 1px solid #e5e5e5;
-}
-.text-blueviolet{
-    color:blueviolet;
-}
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
 /*Buttons*/
+button:focus, input:focus {
+    outline: none;
+}
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;
 }
-.awe-bg-image{
-    background-image:linear-gradient(to right,black,black);
-}
-.awe-outline-none{
-    outline:none;
-}
-.awe-outline-none:focus{
-    outline:none;
-}
-.awe-btn-outline {
-    background-color: whitesmoke;
-    color: var(--theme-color);
-    border: 2px solid var(--theme-color);
+
+.click-effect {
+    font-size: 0em;
+    color: green;
+    left: 0;
+    position: absolute;
+    animation: click-effect 1s linear 1;
 }
 
-.awe-btn-fill{
-    background-color:var(--theme-color);
-    color:white;
+.discount-tag {
+    font-size: 0.8125rem;
+    padding: 0 2px;
+    color: black;
+    margin-right: 2%;
+    background-color:white;
 }
-.awe-btn-outline, .awe-btn-fill {
-    padding: 0.25em;
-    border-radius: 2px;
-    font-size: 0.875rem;
-    font-weight: 900;
+
+.btn-favourite, .btn-view, .btn-cart, .discount-tag {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    box-shadow: -2px -2px 2px #f3f3f3,2px 2px 2px #f3f3f3;
+    font-weight: bold;
+    color: var(--theme-color);
 }
-.awe-btn-outline:hover,.awe-btn-fill:hover{
-    opacity: 0.4;
-    text-decoration: none;
+.btn-favourite, .btn-view {
+    width: 30px;
 }
-.awe-btn-outline:focus,.awe-btn-fill:focus{
-    border:2px solid var(--theme-color);
+
+.btn-store-hover:hover {
+    background-color: var(--theme-color);
+    color: white;
 }
+
+.btn-favourite, .btn-view, .btn-cart {
+    border: none;
+    background-color: white;
+    position: relative;
+}
+.busy-indicator {
+    animation: busy-indicator 1s linear infinite;
+}
+@keyframes busy-indicator{
+    0%{
+        border-bottom:none;
+    }
+    50%{
+        border-bottom:none;
+    }
+    51%{
+        border-bottom:1px solid green;
+    }
+    100% {
+        border-bottom: 1px solid green;
+    }
+}
+
 /*Font*/
 .font-Arialblack {
     font-family: 'Arial Black';
@@ -122,21 +103,21 @@ button.accept-policy {
     color: #1b6ec2;
     background-color:lightblue;
 }
-/*border*/
-.awe-border{
-    border:1px solid var(--theme-color);
+/*animations*/
+@keyframes click-effect {
+    0% {
+        font-size: 1em;
+        opacity: 0.6;
+        top: 0%;
+    }
+
+    100% {
+        opacity: 0;
+        top: -200%;
+        font-size: 0.625em;
+    }
 }
-/*Container*/
-.awe-container{
-    padding:0 2%;
-}
-/*Font*/
-.awe-fontdesign {
-    color: #585151;
-    font-size: 0.875rem;
-    font-weight: 900;
-    text-shadow:none;
-}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

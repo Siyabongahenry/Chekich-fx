@@ -7,19 +7,32 @@
 }
 <div class="container">
      <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
-    @if (Model.FirstOrDefault() != null)
+   
+     @if (Model.FirstOrDefault() != null)
     {
-        <h1 class="text-center bg-theme text-primary">Your orders are listed below</h1>
+      <h1>See Your Order</h1>
         <div class="row">
             @foreach (Order order in Model)
             {
-                <div class="col-12 col-lg-3 p-2">
-                    <div class="awe-boxshadow p-2">
+                <div class="col-12 col-lg-6 p-2">
+                    <div class="order-container">
+                        <div class="text-left">
+                            <h2 class="text-left">Status: @order.Status
+                                @if(order.Status == "Pending")
+                                {
+                                    <span class="pending-dec">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </span>
+                                }
+                            </h2>
+                        </div>
                         @foreach(OrderItem item in order.OrderItems)
                         {
-                            <div class="text-center">
+                            <div class="text-center order-item">
                                 <div>
-                                    <img width="100" src="/Images/Store/Product/@item.Product.ImageFileName" style="border-radius:5px"/>
+                                    <img src="/Images/Store/Product/@item.Product.ImageFileName" style="border-radius:5px"/>
                                 </div>
                                 <div>
                                     <a asp-controller="Store" asp-action="Details" asp-route-Id="@item.Product.Id" asp-route-returnUrl="@Context.Request.Path">
@@ -29,29 +42,36 @@
                             </div>
                         }
                         <div class="text-center">
-                            <hr/>
-                           
-                            <div class="text-center mb-2">  
-                                 <div class="text-center">
-                                    Status: <span class="text-primary">@order.Status</span>
-                                 </div>
+                            <div class="text-center mb-2"> 
+                                <div>
+                                    @if(order.Status == "Incomplete" )
+                                    {
+                                        <p>
+                                            <small>click below to complete your order!!</small>
+                                            <br/>
+                                            <a class="btn-complete" asp-controller="Payment" asp-action="Index">Complete<br/>Now!</a>
+                                        </p>
+                                    }
+                                </div>
                                  <div>
                                     @if(order.ReceivalType != null && order.ReceivalType == ReceivalType.Delivery)
                                     {
-                                        <button class="bg-primary border-0 text-white" onclick="GetDelivery(this,@order.Id)">Delivery Details <i class="fa fa-caret-down"></i></button>
+                                        <button class="text-theme border-0 bg-white" onclick="GetDelivery(this,@order.Id)">Delivery Details <i class="fa fa-caret-down"></i></button>
                                     
                                     }
                                     else if(order.ReceivalType != null && order.ReceivalType == ReceivalType.Collection)
                                     {
-                                        <button class="bg-primary border-0 text-white" onclick="GetCollection(this,@order.Id)">Collection Details <i class="fa fa-caret-down"></i></button>
+                                        <button class="text-theme border-0 bg-white" onclick="GetCollection(this,@order.Id)">Collection Details <i class="fa fa-caret-down"></i></button>
                                     }
-                                    <div class="error d-none" id="error-@order.Id"></div>
-                                    <div id="addressType-@order.Id"></div>
-                                    <div id="StreetName-@order.Id"></div>
-                                    <div id="TownOrCity-@order.Id"></div>
-                                    <div id="Code-@order.Id"></div>
-                                    <div id="dateType-@order.Id"></div>
-                                    <div id="date-@order.Id"></div>
+                                    <div class="order-address">
+                                        <div class="error d-none" id="error-@order.Id"></div>
+                                        <div id="addressType-@order.Id"></div>
+                                        <div id="StreetName-@order.Id"></div>
+                                        <div id="TownOrCity-@order.Id"></div>
+                                        <div id="Code-@order.Id"></div>
+                                        <div id="dateType-@order.Id"></div>
+                                        <div id="date-@order.Id"></div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
                                     <div class="spinner" id="spinner-@order.Id"></div>
@@ -60,20 +80,18 @@
                                     @if(order.PaymentType != null && order.PaymentType == PaymentType.Cash)
                                     {
                                         <b>Amount due to you: @Html.DisplayFor(model=>order.TotalPrice)</b>
-                                        @if (order.ReceivalType == ReceivalType.Delivery)
-                                        {
-                                            <div class="info-box">
-                                                <i class="fa fa-info-circle"></i>&nbsp;
-                                                You should have the amount above to be able to receive your order during the delivery.
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="info-box">
-                                                <i class="fa fa-info-circle"></i>&nbsp;
-                                                You should bring the amount above along with you during your collection to receive your order.
-                                            </div>  
-                                        }
+                                        <div class="text-theme rounded" style="height:20px;line-height:20px;">
+                                            <small><i class="fa fa-info-circle"></i>&nbsp;
+                                                @if (order.ReceivalType == ReceivalType.Delivery)
+                                                {                    
+                                                   <span>You should have the amount above to be able to receive your order.</span>    
+                                                }
+                                                else
+                                                {       
+                                                    <span>You should bring the amount above along with you during your collection to receive your order.</span>
+                                                }
+                                            </small>
+                                        </div>  
                                     }
                                     else if(order.PaymentType != null && order.PaymentType == PaymentType.Online){
                                         <b>Amount due to you: R0</b>

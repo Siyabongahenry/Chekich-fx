@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wRMY64HGTUz4gc8J9dZ+SZqDjSNUjO/WM+o00reqlSY=",
+  "Hash": "aGjHHV2JtPZ6kOrVhUPbUmOULxWyDbladXE//FZ4H70=",
   "Source": "Chekich_fx",
   "BasePath": "_content/Chekich_fx",
   "Mode": "Default",
@@ -1700,6 +1700,23 @@
       "OriginalItemSpec": "wwwroot\\css\\home.css"
     },
     {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\login.css",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\ordermanager.css",
       "SourceId": "Chekich_fx",
       "SourceType": "Discovered",
@@ -1768,12 +1785,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\store.css",
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\track-order.css",
       "SourceId": "Chekich_fx",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
       "BasePath": "_content/Chekich_fx",
-      "RelativePath": "css/store.css",
+      "RelativePath": "css/track-order.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1782,7 +1799,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\store.css"
+      "OriginalItemSpec": "wwwroot\\css\\track-order.css"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\favicon.ico",
@@ -1802,74 +1819,6 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\logo-lg.png",
-      "SourceId": "Chekich_fx",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
-      "BasePath": "_content/Chekich_fx",
-      "RelativePath": "Images/logo-lg.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\logo-lg.png"
-    },
-    {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\logo-md.png",
-      "SourceId": "Chekich_fx",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
-      "BasePath": "_content/Chekich_fx",
-      "RelativePath": "Images/logo-md.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\logo-md.png"
-    },
-    {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\logo-sm.png",
-      "SourceId": "Chekich_fx",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
-      "BasePath": "_content/Chekich_fx",
-      "RelativePath": "Images/logo-sm.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\logo-sm.png"
-    },
-    {
-      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\logo-xm.png",
-      "SourceId": "Chekich_fx",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
-      "BasePath": "_content/Chekich_fx",
-      "RelativePath": "Images/logo-xm.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\logo-xm.png"
-    },
-    {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\pp2.png",
       "SourceId": "Chekich_fx",
       "SourceType": "Discovered",
@@ -1885,6 +1834,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\pp2.png"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\Store\\Product\\1d6c638c-9aca-4a00-8e2a-63910188da13_IMG-20220111-WA0003.jpg",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "Images/Store/Product/1d6c638c-9aca-4a00-8e2a-63910188da13_IMG-20220111-WA0003.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Store\\Product\\1d6c638c-9aca-4a00-8e2a-63910188da13_IMG-20220111-WA0003.jpg"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\Store\\Product\\5189bc56-de08-480b-9290-888542611662_IMG-20220105-WA0009.jpg",
@@ -1919,6 +1885,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Store\\Product\\5af19904-5593-4fc1-a525-029ec09c2162_IMG-20220105-WA0007.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\Store\\Product\\7a4bfab8-5f52-49ec-94ae-f9a5984ca14a_IMG-20220105-WA0004.jpg",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "Images/Store/Product/7a4bfab8-5f52-49ec-94ae-f9a5984ca14a_IMG-20220105-WA0004.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Store\\Product\\7a4bfab8-5f52-49ec-94ae-f9a5984ca14a_IMG-20220105-WA0004.jpg"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\Store\\Product\\b6dfdefd-3551-46fd-858d-e9b8de284ee5_IMG-20220111-WA0001.jpg",
@@ -2055,6 +2038,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\js\\home.js",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "js/home.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\home.js"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\js\\order.js",

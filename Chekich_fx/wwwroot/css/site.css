@@ -2,6 +2,9 @@
 *{
     box-sizing:border-box;
 }
+body {
+    background-color: #f3f3f3;
+}
 h1{
     font-size:1.25em;
     font-weight:bold;
@@ -31,15 +34,11 @@ nav ul,nav form{
     padding:0;
     background-color:white;
 }
-nav ul{
-    background-color:white;
-}
-nav ul,nav ul li,nav a,nav button{
-    line-height:inherit;
+nav li,nav a,nav button{
+    line-height:40px;
 }
 nav button,nav a{
     text-decoration:none;
-    outline:none;
     border:none;
     color:inherit;
     display:block;
@@ -51,9 +50,8 @@ nav button,nav a{
     text-align:center;
     font-size:1.25em;
 }
-nav button:focus,nav a:focus{
+nav button:focus{
     outline:none;
-    text-decoration:none;
 }
 nav .menu-1{
     overflow:hidden;
@@ -104,7 +102,7 @@ nav .menu-2 ul li{
 }
 nav a:hover,nav button:hover{
     background-color:var(--theme-color);
-    color:blue;
+    color:white;
     text-decoration:none;
     text-align:center;
 }

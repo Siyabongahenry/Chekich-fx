@@ -3,34 +3,49 @@
     ViewData["Title"] = "Delivery";
 }
 <div class="container">
-
+    <div class="check-out-menu">
+        <ul>
+            <li style="opacity:0.4">Receival</li>
+            <li style="opacity:0.4">Total</li>
+            <li class="bg-theme text-white">Address</li>
+            <li style="opacity:0.4">Payment</li>
+            <li style="opacity:0.4">Complete</li>
+        </ul>
+    </div>
     @if (Model.FirstOrDefault() != null)
     {
-        <div>
-            <h1>Please Select Your Preferred Residential Address Below</h1>
+        <div class="page">
+            <h1>Preferred Delivery Address</h1>
             <form asp-action="Delivery" method="post">
-                @foreach (Address address in Model)
-                {
-                    <div class="radio-containers">
-                        <input name="_addressId" type="radio" value="@address.Id" id="@address.Id" checked/>
-                        <div>
+                <div class="text-center">
+                    @foreach (Address address in Model)
+                    {
+                        <div class="select-item">
+                            <input name="_addressId" type="radio" value="@address.Id" id="@address.Id" checked/>
                             <div>
-                                <label asp-for="@address.Id">@address.HouseNumber &nbsp; @address.StreetName</label>
+                                <div>
+                                    <label asp-for="@address.Id">@address.HouseNumber &nbsp; @address.StreetName</label>
+                                </div>
+                                 <div>
+                                    <label asp-for="@address.Id">@address.Surbub &nbsp; @address.Surbub</label>
+                                </div>
+                                <div>
+                                    <label asp-for="@address.Id">@address.TownOrCity</label>
+                                </div>
+                                 <div>
+                                    <label asp-for="@address.Id">@address.Code</label>
+                                </div>
                             </div>
-                             <div>
-                                <label asp-for="@address.Id">@address.Surbub &nbsp; @address.Surbub</label>
-                            </div>
-                            <div>
-                                <label asp-for="@address.Id">@address.TownOrCity</label>
-                            </div>
-                             <div>
-                                <label asp-for="@address.Id">@address.Code</label>
+                            <div class="text-center text-theme" style="font-size:2em">
+                                <i class="fa fa-truck"></i>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
                 <div class="text-center mt-2">
-                    <button class="btn btn-primary" type="submit">Confirm</button>
+                    <button class="btn-confirm"><i class="fa fa-check"></i></button>
+                    <br />
+                    <small class="text-primary">confirm</small>
                 </div>
             </form>
         </div>

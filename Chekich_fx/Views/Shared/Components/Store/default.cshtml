@@ -3,16 +3,20 @@
 @{
     var url = Context.Request.Path;
 }
-<div class="store-container">
+<div class="row">
     @foreach (Shoe shoe in Model)
     {
-    <div>
-        <div class="store-item">
-            <a class="inner-container" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url">
-                <div class="text-right">
+        <div class="col-12 col-lg-4 p-2">
+            <div class="store-item p-2 rounded">
+                <div>
+                    <input type="hidden" class="item-id" value="@shoe.Id"/>
+                    <button class="btn-favourite btn-store-hover" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url"><i class="fa fa-heart click-effect"></i><i class="fa fa-heart"></i></button>
+                    <a class="btn-view btn-store-hover" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url"><i class="fa fa-eye"></i></a>
+                    <button class="btn-cart btn-store-hover float-right"><i class="click-effect">+1</i> <span>+</span>&nbsp;<i class="fa fa-shopping-cart"></i></button> 
+                   
                     @if (shoe.DiscountPrice > 0)
                     {
-                        <div class="discount-tag">
+                        <div class="discount-tag float-right">
                             @shoe.DiscountPercentage
                         </div>
                     }
@@ -23,17 +27,17 @@
                     }
                 </div>
                 <div class="p-2 text-center" style="clear:both;">
-                    <img src="/Images/Store/Product/@shoe.ImageFileName" alt="image not found" />
+                    <img class="rounded" src="/Images/Store/Product/@shoe.ImageFileName" alt="image not found" />
                 </div>
 
                 <div class="w-100 bg-transparent text-center pl-1 pr-1" style="font-size:0.675rem;font-family:Verdana;height:1rem;line-height:1rem;">
                     @if (shoe.Quantity == 0)
                     {
-                        <b class="text-danger">out of stock</b>
+                        <span class="text-danger">out of stock</span>
                     }
                 </div>
                 <div class="text-center overflow-hidden" style="height:3rem;line-height:1rem; text-overflow:ellipsis">
-                    <b style="white-space:pre-wrap;overflow:hidden;color:black;">@Html.DisplayFor(modelItem => shoe.Name)</b>
+                    <span style="white-space:pre-wrap;overflow:hidden;color:black;">@Html.DisplayFor(modelItem => shoe.Name)</span>
                 </div>
                 <div class="text-center m-2" style="height:2rem;line-height:1rem;">
                     @if (shoe.DiscountPrice > 0)
@@ -46,9 +50,28 @@
                         <b class="text-dark" style="font-size:0.875rem;font-weight:900;">@Html.DisplayFor(modelitem => shoe.Price)</b>
                     }
                 </div>
-            </a>
+                <div class="text-center">
+                    <div class="size-container">
+                        <button class="btn-decrement"><i class="fa fa-caret-down"></i></button>
+                        <div class="size-group">
+                            @foreach(ShoeSize shoeSize in shoe.Sizes)
+                            {
+                                <div class="size" style="margin-top:0px">s @shoeSize.Size</div>
+                            }
+                        </div>
+                        <button class="btn-increment"><i class="fa fa-caret-up"></i></button>
+                    </div>
+                    <input type="hidden" class="size-input" value="3"/>
+                </div>
+            </div>
         </div>
-    </div>
+    }
+    @if(Model.FirstOrDefault() == null)
+    {
+        <div class="col-12 p-2">
+            <p class="text-theme text-center">
+               The item you're looking for doesn't seem exist in our store, if you're not sure contact us.
+            </p>
+        </div>
     }
 </div>
-    

@@ -16,7 +16,6 @@
     @if(url == "/")
     {
          <link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
-         <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
     }
     else if((url.Contains("/Store")) && !url.Contains("/Details"))
     {
@@ -30,7 +29,7 @@
     {
          <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true"/>
     }
-    else if(url.Contains("/OrderManager") )
+    else if(url.Contains("/OrderManager")||url.Contains("/Payment") )
     {
          <link rel="stylesheet" href="~/css/ordermanager.css" asp-append-version="true"/>
     }
@@ -46,7 +45,14 @@
     {
         <link rel="stylesheet" href="~/css/address_create.css" asp-append-version="true"/>
     }
-
+    else if(url.Contains("/OrderTracking"))
+    {
+        <link rel="stylesheet" href="~/css/track-order.css" asp-append-version="true"/>
+    }
+     else if(url.Contains("/Login"))
+    {
+        <link rel="stylesheet" href="~/css/login.css" asp-append-version="true"/>
+    }
 </head>
 <body>
     <header>
@@ -54,19 +60,20 @@
             <ul>
                 <li class="menu-1">
                     <ul>
-                        <li class="for-desktop"><button class="awe-fontdesign"><span class="text-theme-2">Chekich-fx</span><span class="text-theme">.com</span></button></li>
+                        <li class="for-desktop"><button class="awe-fontdesign">Chekich-fx<span class="text-theme">.com</span></button></li>
                         <li class="for-mob"><button onclick="openSideNav()"><i class="fa fa-bars"></i></button></li>
                         <li><a asp-controller="Profile" asp-action="Index"><i class="fa fa-user"></i></a></li>
                         <li class="for-mob"><button class="btn-mob" onclick="InputSearchDisplay()"><i class="fa fa-search"></i></button></li>
                         <li>
                             <a asp-area="" asp-controller="Cart" asp-action="Index">
-                                <i class="fa fa-shopping-cart"></i> <span class=" badge text-white bg-theme" style="color:white;">@await Component.InvokeAsync("Cart")</span>
+                                <i class="fa fa-shopping-cart"></i> <span class=" badge text-white bg-theme" style="color:white;" id="cart-counter">@await Component.InvokeAsync("Cart")</span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="menu-2">
                     <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-heart"></i>&nbsp;<span class="badge bg-theme text-white" id="message-link">0</span></a></li>
                         <li class="for-mob"><button class="awe-fontdesign"><span class="text-theme-2">Chekich-</span><span class="text-theme">FX</span></button></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         @if (User.IsInRole(URole.Admin) || User.IsInRole(URole.SuperAdmin))
@@ -74,18 +81,7 @@
                             <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
 
                         }
-
-                        <li>
-                            <button onclick="openSubMenu(this,'store-sub-menu','Store')">Store <i class="fa fa-caret-down"></i></button>
-                            <ul class="sub-menu" id="store-sub-menu">
-                                <li> <a asp-area="" asp-controller="Store" asp-action="Index">All</a></li>
-                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Boots">Boots</a></li>
-                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Sneaker">Sneaker</a></li>
-                                <li> <a asp-area="" asp-controller="Store" asp-action="Index" asp-route-Category="@Category.Streetwear">St.wear</a></li>
-                                <li> <a asp-area="" asp-controller="Sales" asp-action="Index">Sales</a></li>
-                            </ul>
-                        </li>
-                         <li> <a asp-area="" asp-controller="OrderTracking" asp-action="Index">MyOrder</a></li>
+                         <li> <a asp-area="" asp-controller="OrderTracking" asp-action="Index">Order</a></li>
                         <li> <a asp-area="" asp-controller="Chat" asp-action="Index"><span>Messages</span>&nbsp;<span class="badge bg-theme text-white" id="message-link">@await Component.InvokeAsync("ChatNotification")</span></a></li>
                         <partial name="_LoginPartial" />
                     </ul>
@@ -111,6 +107,10 @@
     {
         <script src="~/js/signalr/dist/browser/signalr.js"></script>
         <script src="~/js/alert.js" asp-append-version="true"></script>
+    }
+    @if(!url.Contains("/home"))
+    {
+        <script src="~/js/home.js" asp-append-version="true"></script>
     }
     @RenderSection("Scripts", required: false)
 </body>

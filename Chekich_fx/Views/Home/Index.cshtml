@@ -1,30 +1,114 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery _antiforgery
+@using Chekich_fx.Enums
+@model Chekich_fx.ViewModels.ProductFiltersViewModel<Shoe>
 @{
     ViewData["Title"] = "Home Page";
+    string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
-<div class="bg-white p-1">
-    <div class="home-container">
-        <div class="home-item">
-            <div class="text-center home-top-container" style="font-family:Verdana;font-weight:900;letter-spacing:0.125em">
-                <div class="logo-image" style="width:100%;overflow:hidden">
-                    <picture>
-                        <source srcset="/Images/logo-lg.png" media="(min-width:500px)" style="width:100%">
-                        <source srcset="/Images/logo-md.png" media="(min-width:276px)" style="width:100%">
-                        <img src="/Images/logo-xm.png" alt="Alternate Text" style="width:100%" />
-                    </picture>
-                </div>
-                <div class="inner p-1" style="font-size:0.75em;letter-spacing:0.0625em;">
-                    <span class="web-slogan-1"><span class="text-theme">Online</span>&nbsp;<span style="color:var(--theme-color-2)">Store</span></span>
-                </div>
+<div class="home-page container-fluid">
+    <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+    <div class="search-container">
+        <div>
+            <form asp-action="Index">
+                <input name="SearchString" class="search-input" placeholder="search item"/>
+                <button type="submit" class="search-btn bg-theme text-white"><i class="fa fa-search"></i></button>
+            </form>
+       </div> 
+    </div>
+    <div class="row w-100">
+        <div class="col-12 col-lg-2">
+            <div class="p-1">
+                 <ul class="filter-group" id="filter-by-category">
+                     <li class="bg-theme text-white text-center filter-group-item">Filter By Category</li>
+                     <li class="filter-group-item">
+                         <a asp-action="Index" asp-route-Category="All">
+                             <span class="filter-radio">
+                                 @if(ViewBag.Category == Category.All)
+                                 {
+                                    <span class="filter-radio-fill"></span>
+                                 }
+                              </span> All
+                         </a>
+                     </li>
+                     <li class="filter-group-item">
+                        <a asp-action="Index" asp-route-Category="Sneaker">
+                            <span class="filter-radio">
+                                @if(ViewBag.Category == Category.Sneaker)
+                                 {
+                                    <span class="filter-radio-fill"></span>
+                                 }
+                            </span> Sneaker
+                         </a>
+                     </li>
+                      <li class="filter-group-item">
+                        <a asp-action="Index" asp-route-Category="Boots">
+                            <span class="filter-radio">
+                                @if(ViewBag.Category == Category.Boots)
+                                 {
+                                    <span class="filter-radio-fill"></span>
+                                 }
+                            </span> Boots
+                         </a>
+                     </li>
+                      <li class="filter-group-item">
+                          <a asp-action="Index" asp-route-Category="StreetWear">
+                              <span class="filter-radio">
+                                  @if(ViewBag.Category == Category.Streetwear)
+                                   {
+                                       <span class="filter-radio-fill"></span>
+                                   }
+                              </span> Street Wear
+                          </a>
+                     </li>
+                 </ul>
+             </div>
+             <div class="p-1">
+                 <ul class="filter-group" id="filter-by-price">
+                     <li class="bg-theme text-white text-center filter-group-item">Filter By Price</li>
+                     <li class="filter-group-item">
+                         <a asp-action="Index" asp-route-Price="0" asp-route-Category="@ViewBag.Category">
+                             <span class="filter-radio">
+                                 @if(ViewBag.Price == 0)
+                                 {
+                                    <span class="filter-radio-fill"></span>
+                                 }
+                              </span> Lowest to Highest
+                         </a>
+                     </li>
+                     <li class="filter-group-item">
+                         <a asp-action="Index" asp-route-Price="1" asp-route-Category="@ViewBag.Category">
+                             <span class="filter-radio">
+                                 @if(ViewBag.Price == 1)
+                                 {
+                                    <span class="filter-radio-fill"></span>
+                                 }
+                              </span> Highest to Lowest
+                         </a>
+                     </li>
+                      
+                 </ul>
             </div>
         </div>
-        <div class="home-item2">     
-            <h6 class="p-2 mt-2 text-center text-theme awe-boxshadow" style="border-radius:25px"  ><b>Start Shopping</b></h6>       
-            @await Component.InvokeAsync("Store")  
+        <div class="col-12 col-lg-8 item-container">     
+            <h1 class="p-2 mt-2 text-center" >Start Shopping Online</h1>       
+            <div>
+                @await Component.InvokeAsync("Store",Model.ProductList)
+            </div>
+            <div page-model="@Model.PagingInfo" asp-action="Index" page-class="page-number" page-class-normal="page-number" page-class-selected="page-selected"
+                class="page-numbers">
+            </div>
+            
+        </div>
+        <div class="col-12 col-lg-2 p-2 home-ads text-center">
+            <i class="fa fa-balloon"></i>
+            <div>
+                <h1><span>SAVE 90% </span><span>OF</span><span>YOUR</span><span><i class="fa fa-clock"></i></span><span>BY</span><span>SHOPPING</span><span>ONLINE</span><span>WITH</span><span>US.</span></h1>
+            </div>
+            <div>
+                <i class="fa fa-shopping-cart"></i>
+            </div>
         </div>
     </div>
-    <div class="text-center mt-4" style="clear:both">
-        <a asp-controller="Store" asp-action="Index" class="awe-btn-outline"><i class="fa fa-walking"></i> Go To Store</a>
-    </div>
+    
 </div>
 

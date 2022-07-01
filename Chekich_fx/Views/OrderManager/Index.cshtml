@@ -5,20 +5,37 @@
     string tokenValue = _antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <div class="container">
-    <h1 class="p-2">How would you like to receive your order?</h1>   
-    <div id="receivalType-container">
+    <div class="check-out-menu">
+        <ul>
+            <li class="bg-theme text-white">Receival</li>
+            <li style="opacity:0.4">Total</li>
+            <li style="opacity:0.4">Address</li>
+            <li style="opacity:0.4">Payment</li>
+            <li style="opacity:0.4">Complete</li>
+        </ul>
+    </div>
+    <div class="page">
+        <h1>How would you like to receive your order?</h1> 
         <form asp-action="Confirm" method="post">
-            <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
-            <label class="p-2 m-2 border" style="display:block;background-color:#f3f3f3;">
-                <input checked name="_receivalType" type="radio" value="@ReceivalType.Collection" onclick="enableBtn('btn-receivalType')" />
-                <b>Collection</b>
-            </label> 
-            <label class="p-2 m-2 border" style="display:block;background-color:#f3f3f3">
-                <input name="_receivalType" type="radio" value="@ReceivalType.Delivery" onclick="enableBtn('btn-receivalType')" />
-                <b>Delivery</b>
-            </label>
-            <div class="text-center">
-                <button type="submit" class="bg-theme p-2 awe-btn-hover" style="border:0;display:inline-block;width:50%;color:blue;font-weight:bold;border-radius:25px">Next</button>
+            <div id="receivalType-container">  
+                <input type="hidden" id="Verification-Token" name="Verification_token" value="@tokenValue"/>
+                <div class="text-center">
+                    <label class="select-item" >
+                        <input checked name="_receivalType" type="radio" value="@ReceivalType.Collection" />
+                        <b>Collection</b>
+                        <br />
+                        <i class="fa fa-store text-theme"></i>
+                    </label> 
+                    <label class="select-item">
+                        <input name="_receivalType" type="radio" value="@ReceivalType.Delivery" />
+                        <b>Delivery</b>
+                        <br />
+                        <i class="fa fa-truck text-theme"></i>
+                    </label>
+                </div>
+                <div class="text-center">
+                    <button class="btn-next" type="submit">Next<br /><i class="fa fa-arrow-right"></i><span class="btn-spinner"></span></button>
+                </div>
             </div>
         </form>
     </div>

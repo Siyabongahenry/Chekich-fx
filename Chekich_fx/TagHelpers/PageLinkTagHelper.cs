@@ -45,6 +45,7 @@ namespace Chekich_fx.TagHelpers
                     result.InnerHtml.AppendHtml(tag);
                 }
                 output.Content.AppendHtml(result.InnerHtml);
+                
             }
         }
     }
