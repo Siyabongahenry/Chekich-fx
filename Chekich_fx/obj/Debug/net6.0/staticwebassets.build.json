@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aGjHHV2JtPZ6kOrVhUPbUmOULxWyDbladXE//FZ4H70=",
+  "Hash": "nFKLuM2KoilJ+wq/AwS+NHBBUxCpM6jghdDVI9Fc+Ms=",
   "Source": "Chekich_fx",
   "BasePath": "_content/Chekich_fx",
   "Mode": "Default",
@@ -1188,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Chat\\chat.css"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\favourite.css",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "css/favourite.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\favourite.css"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\css\\fontawesome\\css\\all.css",

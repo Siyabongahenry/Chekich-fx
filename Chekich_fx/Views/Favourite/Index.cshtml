@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Chekich_fx.Models.Favourite>
+@{
+    ViewData["Title"] = "Favourite Page";
+}
+<div class="container">
+    <h1>Favourites</h1>
+    <div class="row"> 
+        @if(Model.FirstOrDefault() != null)
+        {
+            @foreach(Favourite fav in Model)
+            {
+                <div class="col-12 col-lg-4">
+                     <img width="100" src="/Images/Store/Product/@fav.Shoe.ImageFileName"/>
+                </div>
+            }  
+        }
+    </div>
+</div>

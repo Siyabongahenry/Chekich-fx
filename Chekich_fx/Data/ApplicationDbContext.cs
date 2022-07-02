@@ -33,6 +33,6 @@ namespace Chekich_fx.Data
         public DbSet<Transport> Transports { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Collection> Collections { get; set; }
-      
+        public DbSet<Favourite> Favourites { get; set; }
     }
 }

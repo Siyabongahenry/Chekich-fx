@@ -38,6 +38,7 @@ function decSizeOnClick() {
 
 //add item to cart
 var btnCart = document.getElementsByClassName("btn-cart");
+var btnFav = document.getElementsByClassName("btn-favourite");
 
 async function postData(url = "", data = {})
 {
@@ -61,9 +62,10 @@ function encodeObj(obj = {}) {
 }
 
 var cartCounter = document.getElementById("cart-counter");
+var favCounter = document.getElementById("fav-counter");
 var itemId = document.getElementsByClassName("item-id");
-addItemToCartOnClick();
-function addItemToCartOnClick() {
+addItemToCartorFavourite();
+function addItemToCartorFavourite() {
     for (let i = 0; i < btnCart.length; i++) {
         btnCart[i].addEventListener("click", () => {
             disableBtnOnProcess(btnCart[i]);
@@ -80,6 +82,24 @@ function addItemToCartOnClick() {
 
                 }).catch(() => {
                     enableBtnAfterProcess(btnCart[i]);
+                    console.log("Something went wrong");
+                });
+        });
+
+        btnFav[i].addEventListener("click", () => {
+            disableBtnOnProcess(btnFav[i]);
+            postData("/Favourite/Add", { "ShoeId": itemId[i].value})
+                .then((response) => {
+                    //add effect
+                    btnFav[i].innerHTML += "<i class='click-effect fa fa-heart'></i>";
+
+                    //cart counter
+                     favCounter.innerText = parseInt(favCount.innerText) + 1;
+
+                    enableBtnAfterProcess(btnFav[i]);
+
+                }).catch(() => {
+                    enableBtnAfterProcess(btnFav[i]);
                     console.log("Something went wrong");
                 });
         });

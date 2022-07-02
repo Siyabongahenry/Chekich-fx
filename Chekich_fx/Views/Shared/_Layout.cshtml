@@ -53,6 +53,10 @@
     {
         <link rel="stylesheet" href="~/css/login.css" asp-append-version="true"/>
     }
+    else if(url.Contains("/Favourite"))
+    {
+        <link rel="stylesheet" href="~/css/favourite.css" asp-append-version="true"/>
+    }
 </head>
 <body>
     <header>
@@ -73,7 +77,14 @@
                 </li>
                 <li class="menu-2">
                     <ul>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-heart"></i>&nbsp;<span class="badge bg-theme text-white" id="message-link">0</span></a></li>
+                        <li>
+                            <a asp-area="" asp-controller="Favourite" asp-action="Index">
+                                <i class="fa fa-heart"></i>&nbsp;
+                                <span class="badge bg-theme text-white" id="fav-counter">
+                                    @await Component.InvokeAsync("Fav")
+                                </span>
+                            </a>
+                        </li>
                         <li class="for-mob"><button class="awe-fontdesign"><span class="text-theme-2">Chekich-</span><span class="text-theme">FX</span></button></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         @if (User.IsInRole(URole.Admin) || User.IsInRole(URole.SuperAdmin))
