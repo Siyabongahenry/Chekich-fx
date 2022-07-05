@@ -36,59 +36,33 @@ namespace Chekich_fx.Controllers
             return View(cart);
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateQuantity(int Id,int Quantity)
+        public async Task<IActionResult> UpdateQuantity(int? Id,int? Quantity)
         {
+            if (Id == null || Quantity == null) return NotFound();
+
             var cart = await _db.CartItem.FirstOrDefaultAsync(c => c.Id == Id);
 
-            if (cart !=null)
-            {
-                try
-                {
-                    cart.Quantity = Quantity;
-                    await _db.SaveChangesAsync();
-                }
-                catch (DbUpdateException)
-                {
-                    ModelState.AddModelError("", "Unable to save changes. " +
-               "Try again, and if the problem persists, " +
-               "see your system administrator.");
-                }
+            if (cart == null) return NotFound();
 
-            }
+            cart.Quantity = (int)Quantity;
+            await _db.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
         public async Task<IActionResult> DeleteProduct(int? Id)
         {
-            try
-            {
-                if (Id != null)
-                {
-                    var cart = await _db.CartItem.FirstOrDefaultAsync(c => c.Id == Id);
-                    if (cart != null)
-                    {
-                        _db.CartItem.Remove(cart);
-                        await _db.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch
-            {
-                ModelState.AddModelError("", "Unable to save changes. " +
-                    "Try again, and if the problem persists, " +
-                        "see your system administrator.");
-            }
-            return RedirectToAction(nameof(Index));
+            if (Id == null) return NotFound();
+
+            var cart = await _db.CartItem.FirstOrDefaultAsync(c => c.Id == Id);
+
+            if (cart == null) return NotFound();
+            
+            _db.CartItem.Remove(cart);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));         
         }
         
-
     }
 }

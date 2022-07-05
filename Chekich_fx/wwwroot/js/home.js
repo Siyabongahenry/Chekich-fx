@@ -71,13 +71,12 @@ function addItemToCartorFavourite() {
             disableBtnOnProcess(btnCart[i]);
             postData("/Store/AddItemToCart", {"itemId":itemId[i].value,"size":sizeInput[i].value})
                 .then((response) => {
-                    //add effect
-                    btnCart[i].innerHTML+= "<i class='click-effect'>+1</i>";
-                    
-                    //cart counter
-                    let cartCountNewValue = parseInt(cartCounter.innerText) + 1;
-                    cartCounter.innerText = cartCountNewValue;
-
+                    if (response != "failed") {
+                        btnCart[i].innerHTML += "<i class='click-effect'>+1</i>";
+                        //cart counter
+                        let cartCountNewValue = parseInt(cartCounter.innerText) + 1;
+                        cartCounter.innerText = cartCountNewValue;
+                    }
                     enableBtnAfterProcess(btnCart[i]);
 
                 }).catch(() => {
@@ -90,12 +89,14 @@ function addItemToCartorFavourite() {
             disableBtnOnProcess(btnFav[i]);
             postData("/Favourite/Add", { "ShoeId": itemId[i].value})
                 .then((response) => {
-                    //add effect
-                    btnFav[i].innerHTML += "<i class='click-effect fa fa-heart'></i>";
-
                     //cart counter
-                     favCounter.innerText = parseInt(favCount.innerText) + 1;
-
+                    if (response != "failed") {
+                        btnFav[i].innerHTML += "<i class='click-effect fa fa-heart'></i>";
+                        favCounter.innerText = parseInt(favCounter.innerText) + 1;
+                    }
+                    else {
+                        btnFav[i].innerHTML += "<i class='click-effect'>exist</i>";
+                    }
                     enableBtnAfterProcess(btnFav[i]);
 
                 }).catch(() => {

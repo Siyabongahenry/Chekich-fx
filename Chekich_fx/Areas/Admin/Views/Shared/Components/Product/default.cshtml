@@ -1,79 +1,78 @@
 ﻿@using Chekich_fx.Enums
 @model Chekich_fx.Models.Shoe
-<div class="a-createp-container">
-    <div>
-        <div>
-            <div>
-                <div class="text-left">
-                    <label asp-for="Name"><i class="fa fa-pen text-theme"></i> PRODUCT NAME</label>
+<div class="add-product-container">
+    <div class="row">
+        
+        <div class="col-9">
+            <div class="row">   
+                 <div class="col-12">
+                     <h2 asp-for="Name">Shoe Name</h2>
+                    <textarea class="w-100" asp-for="Name" rows="1"></textarea>
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <textarea class="w-100" asp-for="Name" rows="2"></textarea>
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="mt-2 p-2">
-                <div>
-                    <label asp-for="Price" >Price</label>
-                    <span class="text-theme" style="font-weight:bold">R</span>&nbsp;
+                <div class="col-12 col-lg-4">
+                    <h2 >Price</h2>
+                    <small><i class="fa fa-info-circle"></i> selling price</small><br />
+                    <span style="font-weight:bold">R</span>&nbsp;
                     <input asp-for="Price" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
+                <div class="col-12 col-lg-4">
+                    <h2>Discount price</h2>   
+                    <small><i class="fa fa-info-circle"></i> if applicable</small>
+                    <div >
+                        <span style="font-weight:bold">R</span>&nbsp;
+                        <input asp-for="DiscountPrice" value="0"/>off
+                        <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                    </div> 
+                </div>
+                 <div class="col-12 col-lg-4">
+                    <h2>Category</h2>
+                    <small>e.g. Sneaker</small>
+                    <br />
+                    <select class="text-white bg-theme" asp-for="Category" asp-items="Html.GetEnumSelectList<Category>()">
+                    </select>
+                    <i class="fa fa-info-circle text-theme"></i>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <h2>Description</h2>
+                    <textarea class="w-100" asp-for="Description" rows="5"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+               
+                <div class="col-12">
+                    <div class="text-left" style="width:50%;float:left">
+                        <a class="awe-btn-outline" asp-action="Index">Back to List</a>
+                    </div>
+                   
+                </div>
             </div>
         </div>
-        <div class="text-center">
-            <div>
-                @if (Model.ImageFileName != null)
-                {
-                    <img src="/Images/Store/Product/@Model.ImageFileName" alt="+ SELECT IMAGE THAT MATCHES YOUR PRODUCT NAME" id="ProductImage"/>
-                }
-                else
-                {
-                    <img src="/Images/pp2.png" alt="+ SELECT IMAGE THAT MATCHES YOUR PRODUCT NAME" id="ProductImage"/>
-                }
+        <div class="col-12 col-lg-3 text-center">
+            <div class="text-center">     
+                  <button class="btn-publish" type="submit">Publish</button>
             </div>
-            <br />
-            <span class="text-danger">@ViewBag.ValidateImage</span>
-            <label class="awe-btn-outline" for="FormFile"><i class="fa fa-image"></i> Upload Image</label>
-            <input type="file" name="FormFile" id="FormFile" accept="image/*" onchange="FileInputChange(this)" style="display:none" />
-        </div>
-    </div>
-    
-    <div>
-        <div>
-            Add a discount price if applicable.
-        </div>
-        <div>
-            <div >
-                <label class="text-theme" asp-for="DiscountPrice"></label>
+            <div class="image-container">
+                <h2 class="p-2 bg-theme text-white">Shoe Image</h2>
+                <div class="d-inline-block p-2">
+                    <label for="FormFile">
+                        @if (Model.ImageFileName != null)
+                        {
+                            <img src="/Images/Store/Product/@Model.ImageFileName" alt="+ SELECT IMAGE THAT MATCHES YOUR PRODUCT NAME" id="ProductImage"/>
+                        }
+                        else
+                        {
+                            <img src="/Images/add.png" alt="+ SELECT IMAGE THAT MATCHES YOUR PRODUCT NAME" id="ProductImage"/>
+                        }
+                    </label>
+                </div>
+                <div>
+                    <span class="text-danger">@ViewBag.ValidateImage</span>
+                    <label class="btn-upload" for="FormFile"><i class="fa fa-arrow-up"></i> Upload</label>
+                    <input type="file" name="FormFile" id="FormFile" accept="image/*" onchange="FileInputChange(this)" style="display:none" />  
+                </div>   
             </div>
-            <div >
-                <span class="text-theme" style="font-weight:bold">R</span>&nbsp;
-                <input asp-for="DiscountPrice" value="0"/>off
-                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div>
-            <label asp-for="Category"></label>
-            <select class="text-white bg-theme" asp-for="Category" asp-items="Html.GetEnumSelectList<Category>()">
-            </select>
-            <i class="fa fa-info-circle text-theme"></i>
-            <span asp-validation-for="Category" class="text-danger"></span>
-        </div>
-    </div>
-    <div>
-        <div>
-            <label asp-for="Description"><i class="fa fa-pen-fancy text-theme"></i>&nbsp;@Html.DisplayNameFor(model=>model.Description)</label>
-        </div>
-        <textarea class="w-100" asp-for="Description" rows="5"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div>
-        <div class="text-left" style="width:50%;float:left">
-            <a class="awe-btn-outline" asp-action="Index">Back to List</a>
-        </div>
-        <div class="text-right" style="width:50%;float:left">
-            <input type="submit" value="Publish" class="awe-btn-outline" />
         </div>
     </div>
 </div>

@@ -23,185 +23,60 @@ namespace Chekich_fx.Controllers
         }
         public async Task<IActionResult> Details(int? Id,string returnUrl=null)
         {
-          
-            if (Id != null)
-            {
-                try
-                {
-                    var obj = await _db.Shoe
-                        .Include(s=>s.Sizes)
-                        .FirstOrDefaultAsync(s => s.Id == Id);
-                    if(returnUrl != null)
-                    {
-                        if (Url.IsLocalUrl(returnUrl))
-                        {
-                            ViewBag.ReturnUrl = returnUrl;
-                        }
-                        else
-                        {
-                            ViewBag.ReturnUrl = "/Store/Index";
-                        }
-                    }
-                    else
-                    {
-                        ViewBag.ReturnUrl = "/Store/Index";
-                    }
-                    if (obj != null)
-                    {
-                        return View(obj);
-                    }
-                }
-                catch
-                {
-                    return NotFound();
-                }
-                return NotFound();
-            }
-            return NotFound();
-        }
-        [HttpPost]
-        public async Task<IActionResult> AddProductToCart(int Id,int ShoeSize)
-        {
-            var userId = GetUserId();
-            var cart = await _db.Cart.FirstOrDefaultAsync(c=>c.UserId==userId);
-            if(cart == null)
-            {
-                try
-                {
-                    cart = new Cart()
-                    {
-                        UserId = userId,
-                    };
-                    _db.Add(cart);
-                    await _db.SaveChangesAsync();
-                    CartItem newCartItem = new CartItem()
-                    {
-                        ProductId =Id,
-                        CartId = cart.Id,
-                        Quantity = 1,
-                        ShoeSizeInt = ShoeSize
-                    };
-                    _db.Add(newCartItem);
-                    await _db.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index),nameof(Cart));
-                }
-                catch
-                {
-                    return RedirectToAction(nameof(Index));
-                }
 
-            }
-            else
-            {
-                var cartItem = await _db.CartItem.FirstOrDefaultAsync(c => c.CartId == cart.Id && c.ProductId == Id && c.ShoeSizeInt==ShoeSize);
-                if(cartItem == null)
-                {
-                    try
-                    {
-                        cartItem = new CartItem()
-                        {
-                            ProductId = Id,
-                            CartId = cart.Id,
-                            Quantity = 1,
-                            ShoeSizeInt = ShoeSize
-                        };
-                        _db.Add(cartItem);
-                        await _db.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index), nameof(Cart));
-                    }
-                    catch
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        cartItem.Quantity++;
-                        await _db.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index), nameof(Cart));
-                    }
-                    catch
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
-                    
-                }
-            }
+            if (Id == null) return NotFound();
+                
+            var shoe = await _db.Shoe
+                .Include(s=>s.Sizes)
+                .FirstOrDefaultAsync(s => s.Id == Id);
+
+            if (shoe == null) return NotFound();
+   
+            ViewBag.ReturnUrl = returnUrl != null && Url.IsLocalUrl(returnUrl)? returnUrl:"/Store/Index";
            
+            return View(shoe);
+
         }
+       
+       
         [HttpPost]
-        public async Task<string> AddItemToCart(int itemId, int size)
+        public async Task<string> AddItemToCart(int? shoeId, int? size)
         {
+            if (shoeId == null || size == null) return "failed";
+
             var userId = GetUserId();
             var cart = await _db.Cart.FirstOrDefaultAsync(c => c.UserId == userId);
             if (cart == null)
             {
-                try
+               
+                cart = new Cart()//create new cart with user Id to add items
                 {
-                    cart = new Cart()
-                    {
-                        UserId = userId,
-                    };
-                    _db.Add(cart);
-                    await _db.SaveChangesAsync();
-                    CartItem newCartItem = new CartItem()
-                    {
-                        ProductId = itemId,
-                        CartId = cart.Id,
-                        Quantity = 1,
-                        ShoeSizeInt = size
-                    };
-                    _db.Add(newCartItem);
-                    await _db.SaveChangesAsync();
-                    return "success";
-
-                }
-                catch
+                    UserId = userId,
+                };
+                _db.Add(cart);
+                await _db.SaveChangesAsync();
+            }
+           
+            var cartItem = await _db.CartItem.FirstOrDefaultAsync(c => c.CartId == cart.Id && c.ProductId == shoeId && c.ShoeSizeInt == size);
+            if (cartItem == null)
+            {  
+                cartItem = new CartItem()
                 {
-                    return "error";
-                }
+                    ProductId = (int)shoeId,
+                    CartId = cart.Id,
+                    Quantity = 1,
+                    ShoeSizeInt = (int)size
+                };
+                      
             }
             else
             {
-                var cartItem = await _db.CartItem.FirstOrDefaultAsync(c => c.CartId == cart.Id && c.ProductId == itemId && c.ShoeSizeInt == size);
-                if (cartItem == null)
-                {
-                    try
-                    {
-                        cartItem = new CartItem()
-                        {
-                            ProductId = itemId,
-                            CartId = cart.Id,
-                            Quantity = 1,
-                            ShoeSizeInt = size
-                        };
-                        _db.Add(cartItem);
-                        await _db.SaveChangesAsync();
-                        return "succcess";
-                    }
-                    catch
-                    {
-                        return "error";
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        cartItem.Quantity++;
-                        await _db.SaveChangesAsync();
-                        return "success";
-                    }
-                    catch
-                    {
-                        return "error";
-                    }
-
-                }
-
+                cartItem.Quantity++;
             }
+            _db.Add(cartItem);
+            await _db.SaveChangesAsync();
+            return "succcess";
+          
         }
         public string GetUserId()
         {

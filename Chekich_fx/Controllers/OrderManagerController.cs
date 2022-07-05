@@ -40,10 +40,8 @@ namespace Chekich_fx.Controllers
         [HttpPost]
         public async Task<IActionResult> Confirm(ReceivalType? _receivalType)
         { 
-            if(_receivalType == null)
-            {
-                return NotFound();
-            }
+            if(_receivalType == null) return NotFound();
+            
             var transportCost = 0;
             if (_receivalType == ReceivalType.Delivery)
             {
@@ -72,10 +70,8 @@ namespace Chekich_fx.Controllers
         [HttpPost]
         public async Task<IActionResult> Submit(ReceivalType? _receivalType)
         {
-            if (_receivalType == null)
-            {
-                return NotFound();
-            }
+            if (_receivalType == null) return NotFound();
+            
             var transportCost = 0;
             if (_receivalType == ReceivalType.Delivery)
             {
@@ -144,10 +140,8 @@ namespace Chekich_fx.Controllers
                 .OrderBy(a => a.DateTime)
                 .LastOrDefaultAsync(c => c.UserId == userId);
             bool IsUserAddress = await _db.Address.AnyAsync(a => a.Id == _addressId && a.UserId == userId);
-            if (order == null && !IsUserAddress)
-            {
-                return NotFound();
-            }
+            if (order == null && !IsUserAddress) return NotFound();
+            
             bool IsOnDelivery = await _db.Deliveries.AnyAsync(d => d.OrderId == order.Id);
             if (!IsOnDelivery)
             {
@@ -180,10 +174,8 @@ namespace Chekich_fx.Controllers
                 .OrderBy(a => a.DateTime)
                 .LastOrDefaultAsync(c => c.UserId == userId);
             
-            if (!addressExist || order == null)
-            {
-                return NotFound();
-            }
+            if (!addressExist || order == null) return NotFound();
+            
             bool collectionExist = await _db.Collections.AnyAsync(c => c.OrderId == order.Id);
             if (!collectionExist)
             {
@@ -219,10 +211,8 @@ namespace Chekich_fx.Controllers
                     .Where(a => a.AddressType == AddressType.Delivery && a.UserId == ApplicationUserId)
                     .ToListAsync();
             }
-            if(addresses.Count == 0)
-            {
-                return "null";
-            }
+            if(addresses.Count == 0) return "null";
+            
             return JsonSerializer.Serialize(addresses);
         }
       

@@ -46,26 +46,20 @@ namespace Chekich_fx.Controllers
                 .AsNoTracking()
                 .OrderBy(a => a.DateTime)
                 .LastOrDefaultAsync(o => o.UserId == userId);
-            if (order != null)
-            {
-                bool hasPayment = await _db.OnlinePayments.AnyAsync(o => o.OrderId == order.Id);
-                if (hasPayment)
-                {
-                    return RedirectToAction("Order", "Status");
-                }
 
-                OnlinePayment payment = new OnlinePayment
-                {
-                    Amount = order.TotalPrice,
-                    OrderId = order.Id,
-                    DateTime = DateTime.Now
-                };
-                return View(payment);
-            }
-            else
+            if (order == null) return NotFound();
+            
+            bool hasPayment = await _db.OnlinePayments.AnyAsync(o => o.OrderId == order.Id);
+            if (hasPayment) return RedirectToAction("Order", "Status");
+
+            OnlinePayment payment = new OnlinePayment
             {
-                return NotFound();
-            }
+                Amount = order.TotalPrice,
+                OrderId = order.Id,
+                DateTime = DateTime.Now
+            };
+            return View(payment);
+           
         }
         [HttpPost]
         public async Task<IActionResult> Online(string referenceId)
@@ -96,30 +90,26 @@ namespace Chekich_fx.Controllers
             var order = await _db.Order
                 .OrderBy(a => a.DateTime)
                 .LastOrDefaultAsync(o => o.UserId == userId);
-            if (order != null)
-            {
-                var hasPayment = await _db.CashPayments.AnyAsync(c => c.OrderId == order.Id);
-                if (hasPayment)
-                {
-                    return RedirectToAction("OrderManager", "Status");
-                }
-                CashPayment payment = new CashPayment
-                {
-                    Amount = order.TotalPrice,
-                    OrderId = order.Id,
-                    DateTime = DateTime.Now
-                };
-                _db.Add(payment);
+            if (order == null) return NotFound();
+            
+            var hasPayment = await _db.CashPayments.AnyAsync(c => c.OrderId == order.Id);
 
-                order.Status = Status.Pending;
-                order.PaymentType = PaymentType.Cash;
-                await _db.SaveChangesAsync();
-                return RedirectToAction(nameof(Complete));
-            }
-            else
+            if (hasPayment) return RedirectToAction("OrderManager", "Status");
+            
+            
+            CashPayment payment = new CashPayment
             {
-                return NotFound();
-            }
+                Amount = order.TotalPrice,
+                OrderId = order.Id,
+                DateTime = DateTime.Now
+            };
+            _db.Add(payment);
+
+            order.Status = Status.Pending;
+            order.PaymentType = PaymentType.Cash;
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Complete));
+           
         }
         public IActionResult Complete()
         {

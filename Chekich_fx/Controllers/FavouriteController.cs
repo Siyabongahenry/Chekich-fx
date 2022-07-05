@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace Chekich_fx.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class FavouriteController : Controller
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         public FavouriteController(ApplicationDbContext db)
         {
             _db = db;
@@ -26,11 +27,11 @@ namespace Chekich_fx.Controllers
         {
             var userId = GetUserId();
             var shoe = await _db.Shoe.AsNoTracking().FirstOrDefaultAsync(s => s.Id == ShoeId);
-            
-            if(shoe == null) return "failed";
 
-            var findFav = await _db.Favourites.FirstOrDefaultAsync(f=>f.UserId == userId && f.ShoeId == ShoeId);
-            
+            if (shoe == null) return "failed";
+
+            var findFav = await _db.Favourites.FirstOrDefaultAsync(f => f.UserId == userId && f.ShoeId == ShoeId);
+
             if (findFav != null) return "failed";
 
             Favourite fav = new Favourite()

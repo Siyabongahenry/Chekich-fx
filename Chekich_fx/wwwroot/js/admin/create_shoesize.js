@@ -85,10 +85,11 @@ function addRow(size,quantity,shoeId) {
     var sizesContainer = document.querySelector("#sizes-table tbody");
     var newSizeElement = document.createElement("tr");
     newSizeElement.setAttribute("id", size);
-    newSizeElement.innerHTML = "<td>" + size + "</td>"
-        + "<td class='quantity' id='" + size + "-quantity' onclick ='allowUpdate(" + size + "," + quantity + ")'>"
-        + quantity + "</td>";
-    newSizeElement.innerHTML += "<td onclick='removeSize("+shoeId+","+size+")'><i class='fa fa-trash'></i></td>";
+    newSizeElement.innerHTML = `<td>${ size }</td>
+                                <td class='quantity' id='${ size}-quantity'
+                                onclick ='allowUpdate(${size},${quantity })'>
+                                ${ quantity } </td>`;
+    newSizeElement.innerHTML += `<td onclick='removeSize(${shoeId},${size })'><i class='fa fa-trash'></i></td>`;
     sizesContainer.appendChild(newSizeElement);
 }
 

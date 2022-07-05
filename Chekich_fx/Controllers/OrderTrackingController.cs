@@ -33,19 +33,17 @@ namespace Chekich_fx.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var orderExist = await _db.Order.AnyAsync(o => o.UserId == userId && o.Id == _orderId);
-            if (orderExist)
-            {
-                var delivery = await _db.Deliveries
+            if (!orderExist) return "OrderNotFound";
+
+            var delivery = await _db.Deliveries
                     .AsNoTracking()
                     .Include(d => d.Address)
                     .FirstOrDefaultAsync(d => d.OrderId == _orderId);
-                if (delivery != null)
-                {
-                    return JsonSerializer.Serialize(delivery);
-                }
-                return "DeliveryNotFound";
-            }
-            return "OrderNotFound";
+                
+            if (delivery == null) return "DeliveryNotFound";
+            
+             return JsonSerializer.Serialize(delivery);   
+           
         }
         [HttpGet]
         public async Task<string> Collection(int _orderId)

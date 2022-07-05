@@ -13,7 +13,6 @@
                     <button class="btn-favourite btn-store-hover" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url"><i class="fa fa-heart click-effect"></i><i class="fa fa-heart"></i></button>
                     <a class="btn-view btn-store-hover" asp-controller="Store" asp-action="Details" asp-route-Id="@shoe.Id" asp-route-returnUrl="@url"><i class="fa fa-eye"></i></a>
                     <button class="btn-cart btn-store-hover float-right"><i class="click-effect">+1</i> <span>+</span>&nbsp;<i class="fa fa-shopping-cart"></i></button> 
-                   
                     @if (shoe.DiscountPrice > 0)
                     {
                         <div class="discount-tag float-right">
@@ -22,7 +21,7 @@
                     }
                     else
                     {
-                        <div class="discount-tag" style="visibility:hidden">
+                        <div class="discount-tag float-right" style="visibility:hidden">
                         </div>
                     }
                 </div>

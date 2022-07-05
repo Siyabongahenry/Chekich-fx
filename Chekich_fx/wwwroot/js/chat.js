@@ -118,12 +118,12 @@ function SendMessage(chat_screen_Id)
                 }, 3000);   
             }
             else if (IsSent && IsSaved) {
-                setTimeout(() => {
-                    addChatToContainer("We'll be in touched with you soon.", "received-chat", chat_screen_Id,false);
-                    setTimeout(() => {
-                        addChatToContainer("We apologize for taking this long,"+"\n we're currently on heavy duty.", "received-chat", chat_screen_Id,false);
-                    }, 10000);
-                },3000);
+                //setTimeout(() => {
+                //    addChatToContainer("We'll be in touched with you soon.", "received-chat", chat_screen_Id,false);
+                //    setTimeout(() => {
+                //        addChatToContainer("We apologize for taking this long,"+"\n we're currently on heavy duty.", "received-chat", chat_screen_Id,false);
+                //    }, 10000);
+                //},3000);
                 
             }
             else if (IsSent && !IsSaved) {

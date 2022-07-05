@@ -39,7 +39,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Shared\CheckoutPartial\" />
     <Folder Include="wwwroot\Images\Slide\Mobile\" />
     <Folder Include="wwwroot\Images\Slide\Desktop\" />
     <Folder Include="wwwroot\Images\Slide\Tablet\" />

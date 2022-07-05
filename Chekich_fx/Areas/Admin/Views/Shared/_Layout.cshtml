@@ -19,23 +19,23 @@
     }
     @if(url.Contains("/Admin/Product") && url != "/Admin/Product/Create" )
     {
-        <link rel="stylesheet" href="~/css/a_store.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/admin/store.css" asp-append-version="true"/>
     }
     @if(url.Contains("/Admin/Product/Create") || url.Contains("/Admin/Product/Edit"))
     {
-        <link rel="stylesheet" href="~/css/a_create_p.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/admin/create_p.css" asp-append-version="true"/>
     }
     @if(url.Contains("/Admin/ShoeSize/Create"))
     {
-        <link rel="stylesheet" href="~/css/a_create_shoeSize.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/admin/create_shoeSize.css" asp-append-version="true"/>
     }
    @if(url.Contains("/Admin/Order"))
     {
-        <link rel="stylesheet" href="~/css/a_order.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/admin/order.css" asp-append-version="true"/>
     }
     @if(url.Contains("/Admin/Users"))
     {
-        <link rel="stylesheet" href="~/css/a_users.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/admin/users.css" asp-append-version="true"/>
     }
   
 </head>
@@ -83,11 +83,11 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @if(url.Contains("/Admin/Product") && !url.Contains("/Create"))
     {
-       <script src="~/js/a_create_p.js" asp-append-version="true"></script>
+       <script src="~/js/admin/create_p.js" asp-append-version="true"></script>
     }
     @if(url.Contains("/Admin/Product/Create"))
     {
-       <script src="~/js/a_create_p.js" asp-append-version="true"></script>
+       <script src="~/js/admin/create_p.js" asp-append-version="true"></script>
     }
     @RenderSection("Scripts", required: false)
 </body>
