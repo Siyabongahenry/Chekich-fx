@@ -41,9 +41,12 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
 </p>
 <p align="center>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img1.png"/>
-  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img2.png"/>                                                                             <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img3.png"/>
+  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img2.png"/>                                                                         </p> 
+<p align="center>                                                                                        
+  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img3.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img4.png"/>
 </p>
+
                                                                                                    
 
 
