@@ -39,10 +39,10 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
   With the help of signalR I was able to build my own chatting app inside the website. The app saves the chat in a database using ajax, this is to
   ensure that the chat are kept safe just in case an there's an interruption.
 </p>
-<p align="center>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img1.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img2.png"/>                                                                         </p> 
-<p align="center>                                                                                        
+<p align="center">                                                                                        
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img3.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img4.png"/>
 </p>
