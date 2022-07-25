@@ -4,21 +4,28 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
 <h2>User Interface</h2>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img.png"/>
-  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img1.png"/>
-  <hr/>
-  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img3.png"/>
+</p>
+<p align="center">
+     <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img1.png"/>
+    <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img3.png"/>
+</p>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img4.png"/>
-  <hr/>
-  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img5.png"/>
+   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img5.png"/>
+</p>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img6.png"/>
-  <hr/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img7.png"/>
+</p>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img8.png"/>
-  <hr/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img9.png"/>
+</p>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img10.png"/>
-  <hr/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img11.png"/>
+</p>
+<p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img12.png"/>
 </p>
 <h2>Built in chatting app</h2>
