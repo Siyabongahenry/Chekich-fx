@@ -22,7 +22,9 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
   ensure that the chat are kept safe just in case an there's an interruption.
 </p>
 <p align="center>
-  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Chat/chat-1.png"/>
+  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img1.png"/>
+  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img2.png"/>                                                                             <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img3.png"/>
+  <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Chat/img4.png"/>
 </p>
                                                                                                    
 
