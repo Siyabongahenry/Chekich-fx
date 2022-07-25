@@ -9,27 +9,27 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
      <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img1.png"/>
     <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img3.png"/>
 </p>
-## Home page and Side Navigation
+<h3>Home page and Side Navigation</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img4.png"/>
    <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img5.png"/>
 </p>
-## Details and Cart
+<h3>Details and Cart</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img6.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img7.png"/>
 </p>
-## Login and Address
+<h3>Login and Receival selection</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img8.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img9.png"/>
 </p>
-## Payment
+<h3>Payment</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img10.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img11.png"/>
 </p>
-#payment
+<h3>Payment</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img12.png"/>
 </p>
