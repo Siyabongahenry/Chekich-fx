@@ -5,14 +5,19 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img1.png"/>
+  <hr>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img3.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img4.png"/>
+  <hr>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img5.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img6.png"/>
+  <hr>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img7.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img8.png"/>
+  <hr>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img9.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img10.png"/>
+  <hr>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img11.png"/>
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img12.png"/>
 </p>
