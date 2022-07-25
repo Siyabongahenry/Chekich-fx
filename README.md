@@ -6,7 +6,6 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-1.png"/>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-2.png"/>
   <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-3.png"/>
-  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-4.png"/>
 </p>
 <h2>Built in chatting app</h2>
 <p aligh="center">
