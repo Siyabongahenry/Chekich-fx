@@ -3,9 +3,9 @@ Chekich-fx is an E-commerce website that is specifically designed to sell shoes 
 The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
 <h2>User Interface</h2>
 <p align="center">
-  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-1.png"/>
-  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-2.png"/>
-  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/store-3.png"/>
+  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/img1.png"/>
+  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/img2.png"/>
+  <img src="https://github.com/Siyabongahenry/SiyaWeb/blob/main/src/Images/Project/Store/img3.png"/>
 </p>
 <h2>Built in chatting app</h2>
 <p aligh="center">
