@@ -10,7 +10,7 @@ The project is developed using Asp.net core MVC,Vanilla Javascript and Bootstrap
      <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img1.png"/>
     <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img3.png"/>
 </p>
-<h3>Details and Cart</h3>
+<h3 style="text-align:center;">Details and Cart</h3>
 <p align="center">
   <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img4.png"/>
    <img src="https://github.com/Siyabongahenry/Project-Images/blob/main/Chekich/Store/img5.png"/>
