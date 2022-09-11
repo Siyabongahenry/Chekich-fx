@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Chekich_fx.Data;
 using Chekich_fx.Enums;
 using Chekich_fx.Models;
+using Chekich_fx.Utility;
 using Chekich_fx.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -84,37 +85,42 @@ namespace Chekich_fx.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Shoe product,IFormFile FormFile)
         {
             ViewBag.Name = "";
-            if (FormFile!= null)
+            if (FormFile == null)
             {
-                try
+                ViewBag.ValidateImage = "*Select product image.";
+                return View(product);
+            }
+
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    if (ModelState.IsValid)
-                    {
-                        product.ImageFileName = UploadImage(FormFile);
-                        product.ApplicationUser= await _userManager.GetUserAsync(User); 
-                        _db.Add(product);
-                        await _db.SaveChangesAsync();
-                    }
-                    return RedirectToAction(nameof(Create), nameof(ShoeSize), new {shoeId = product.Id});
-                }
-                catch (DbUpdateException)
-                {
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                "Try again, and if the problem persists " +
-                "see your system administrator.");
+                    product.ImageFileName = UploadImage(FormFile);
+                    product.ApplicationUser= await _userManager.GetUserAsync(User); 
+                    _db.Add(product);
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction(nameof(Create), nameof(ShoeSize), new { shoeId = product.Id });
                 }
             }
-            ViewBag.ValidateImage = "*Select product image.";
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. " +
+                "Try again, and if the problem persists " +
+                "see your system administrator.");
+            }
+
             return View(product);
         }
         public async Task<IActionResult> Edit(int? Id)
         {
             ViewBag.ValidateImage = "";
-            if (Id == null)
-            {
-                return NotFound();
-            }
-            return View(await _db.Shoe.AsNoTracking().Include(p=>p.Sizes).FirstOrDefaultAsync(p => p.Id == Id));
+            if (Id == null) return NotFound();
+
+            var product = await _db.Shoe.AsNoTracking().Include(p => p.Sizes).FirstOrDefaultAsync(p => p.Id == Id);
+
+            if (product == null) return NotFound();
+            
+            return View(product);
         }
         [HttpPost, ActionName("Edit")]
         [HttpPost]
@@ -125,10 +131,12 @@ namespace Chekich_fx.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             var ProductToUpdate = await _db.Shoe.FirstOrDefaultAsync(p => p.Id == Id);
+
             if(FormFile != null)
             {
-                DeleteProductImage(ProductToUpdate.ImageFileName);
+                DeleteImage(ProductToUpdate.ImageFileName);
                 ProductToUpdate.ImageFileName = UploadImage(FormFile);
             }
             if (await TryUpdateModelAsync<Shoe>(ProductToUpdate,"", p => p.Name, p => p.Description, p => p.Price, p => p.DiscountPrice))
@@ -149,53 +157,45 @@ namespace Chekich_fx.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Details(int? Id,string returnUrl = null)
         {
-            if (Id != null)
+            if (Id == null) return NotFound();
+            
+            try
             {
-                try
+                var product = await _db.Shoe
+                    .AsNoTracking()
+                    .Include(s => s.Sizes)
+                    .FirstOrDefaultAsync(p => p.Id == Id);
+
+                if (product == null) return NotFound();
+                
+                if(returnUrl != null && Url.IsLocalUrl(returnUrl))
                 {
-                    var product = await _db.Shoe
-                        .AsNoTracking()
-                        .Include(s => s.Sizes)
-                        .FirstOrDefaultAsync(p => p.Id == Id);
-                    if(product != null)
-                    {
-                        if(returnUrl != null && Url.IsLocalUrl(returnUrl))
-                        {
-                            ViewBag.ReturnUrl = returnUrl;
-                        }
-                        else
-                        {
-                            ViewBag.ReturnUrl = "/Admin/OrderItems/Index";
-                        }
-                        return View(product);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
+                    ViewBag.ReturnUrl = returnUrl;
                 }
-                catch
+                else
                 {
-                    return NotFound();
+                    ViewBag.ReturnUrl = "/Admin/OrderItems/Index";
                 }
+                return View(product);
                
             }
-            return View(nameof(Index));
+            catch
+            {
+                return NotFound();
+            }    
+           
         }
         public async Task<IActionResult> Delete(int? Id, bool? saveChangesError = false)
         {
-            if (Id == null)
-            {
-                return NotFound();
-            }
+            if (Id == null) return NotFound();
 
+            //find product database
             var product = await _db.Shoe
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == Id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+
+            if (product == null) return NotFound();
+            
 
             if (saveChangesError.GetValueOrDefault())
             {
@@ -209,20 +209,17 @@ namespace Chekich_fx.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int? Id)
         {
-            if (Id == null)
-            {
-                return NotFound();
-            }
+            if (Id == null) return NotFound();
+            
             var product = await _db.Shoe.FindAsync(Id);
-            if (product == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
+
+            if (product == null) return RedirectToAction(nameof(Index));
+
             try
             { 
                 _db.Shoe.Remove(product);
                 await _db.SaveChangesAsync();
-                DeleteProductImage(product.ImageFileName);
+                DeleteImage(product.ImageFileName);
                 return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException /* ex */)
@@ -233,29 +230,16 @@ namespace Chekich_fx.Areas.Admin.Controllers
         }
         private string UploadImage(IFormFile File)
         {
-            string uniqueFileName = null;
-            if (File != null)
-            {
-                string uploadsFolder = Path.Combine(_enviroment.WebRootPath, "images","store","product");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + File.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    File.CopyTo(fileStream);
-                }
-            }
+            string uploadPath = Path.Combine(_enviroment.WebRootPath, "images", "store", "product");
 
-            return uniqueFileName;
+            return FileManager.Upload(File, uploadPath);
         }
-        private void DeleteProductImage(string _fileName)
+        private void DeleteImage(string _fileName)
         {
-            string uploadsFolder= Path.Combine(_enviroment.WebRootPath, "images","store","product");
-            string filePath = Path.Combine(uploadsFolder, _fileName);
-            if (System.IO.File.Exists(filePath))
-            {
-                System.IO.File.Delete(filePath);
-            }
+            string imgPath = Path.Combine(_enviroment.WebRootPath, "images", "store", "product",_fileName);
+
+            FileManager.Delete(imgPath);
         }
     }
 }

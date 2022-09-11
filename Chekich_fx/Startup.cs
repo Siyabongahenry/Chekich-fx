@@ -54,6 +54,7 @@ namespace Chekich_fx
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("MyDbConnection")));
+
             services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -107,11 +108,13 @@ namespace Chekich_fx
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             
             app.UseRouting();
 
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseSession();

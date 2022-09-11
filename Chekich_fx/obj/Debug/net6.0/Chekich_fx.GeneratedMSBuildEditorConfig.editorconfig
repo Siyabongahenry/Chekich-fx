@@ -15,12 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\SBUSISO\OneDrive\Desktop\Chekich_fx\Chekich_fx
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/AChat/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQUNoYXRcSW5kZXguY3NodG1s
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Models/Member/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cTW9kZWxzXE1lbWJlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/Member/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVtYmVyXEluZGV4LmNzaHRtbA==
+[C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/AChat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQUNoYXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/SBUSISO/OneDrive/Desktop/Chekich_fx/Chekich_fx/Areas/Admin/Views/Order/Details.cshtml]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sKn7HVUdviikST0MRjiD6Z1oTB7uwIRkJNo7fnDL/5A=",
+  "Hash": "/gE/M9RaKKvtOKXQM81USHL2kQoNv/DQGrIDYtOfAbM=",
   "Source": "Chekich_fx",
   "BasePath": "_content/Chekich_fx",
   "Mode": "Default",
@@ -1834,6 +1834,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\add.png",
+      "SourceId": "Chekich_fx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\",
+      "BasePath": "_content/Chekich_fx",
+      "RelativePath": "Images/add.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\add.png"
     },
     {
       "Identity": "C:\\Users\\SBUSISO\\OneDrive\\Desktop\\Chekich_fx\\Chekich_fx\\wwwroot\\Images\\pp2.png",
